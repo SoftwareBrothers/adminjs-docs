@@ -4,5 +4,14 @@ root: ./
     readme: README.md  
     summary: SUMMARY.md​
 
-redirects:  
+redirects:
+    tutorial-installation-instructions.html: installation/getting-started.md
     tutorial-passing-resources.html: basics/resource.md
+    tutorial-customizing-resources.html: basics/resource.md
+    tutorial-actions.html: basics/action.md
+    tutorial-writing-react-components.html: tutorials/writing-your-own-components.md
+    tutorial-features.html: tutorials/using-adminjs-features.md
+    tutorial-custom-dashboard.html: tutorials/customize-dashboard.md
+    tutorial-rbac.html: tutorials/adding-role-based-access-control.md
+    tutorial-i18n.html: tutorials/internationalization-i18n.md
+    tutorial-cms.html: tutorials/content-management-system.md
