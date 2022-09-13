@@ -5,4 +5,4 @@ root: ./
     summary: SUMMARY.md​
 
 redirects:  
-    tutorial-passing-resources.html: basics/resource
+    tutorial-passing-resources.html: basics/resource.md
