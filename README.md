@@ -1,3 +1,8 @@
+---
+cover: .gitbook/assets/adminjs-docs-thumb.png
+coverY: 0
+---
+
 # AdminJS
 
 {% hint style="info" %}
