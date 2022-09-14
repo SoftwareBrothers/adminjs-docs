@@ -1,5 +1,7 @@
 ---
 description: '@adminjs/objection'
+cover: ../../.gitbook/assets/objection-baner (1).png
+coverY: 0
 ---
 
 # Objection
