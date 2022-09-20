@@ -15,3 +15,25 @@ redirects:
     tutorial-rbac.html: tutorials/adding-role-based-access-control.md
     tutorial-i18n.html: tutorials/internationalization-i18n.md
     tutorial-cms.html: tutorials/content-management-system.md
+    Action: basics/action.md
+    AdminJSOptions: basics/action.md
+    PropertyOptions: basics/property.md
+    ResourceOptions: basics/resource.md
+    AdminJS: installation/getting-started.md
+    module-@adminjs_upload: tutorials/using-adminjs-features.md
+    module-@adminjs_express: installation/plugins/express.md
+    module-@adminjs_typeorm: installation/adapters/typeorm.md
+    module-@adminjs_sequelize: installation/adapters/sequelize.md
+    module-@adminjs_design-system: installation/getting-started.md
+    module-@adminjs_prisma: installation/adapters/prisma.md
+    module-@adminjs_bundler: installation/getting-started.md
+    module-@adminjs_koa: installation/plugins/koa.md
+    module-@adminjs_fastify: installation/plugins/fastify.md
+    module-@adminjs_hapi: installation/plugins/hapi.md
+    module-@adminjs_nestjs: installation/plugins/nest.md
+    module-@adminjs_import-export: tutorials/using-adminjs-features.md
+    module-@adminjs_logger: tutorials/using-adminjs-features.md
+    module-@adminjs_passwords: tutorials/using-adminjs-features.md
+    module-@adminjs_mikroorm: installation/adapters/mikroorm.md
+    module-@adminjs_mongoose: installation/adapters/mongoose.md
+    
