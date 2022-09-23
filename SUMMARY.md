@@ -1,6 +1,7 @@
 # Table of contents
 
 * [AdminJS](README.md)
+* [⚠ API Reference](api-reference.md)
 
 ## Installation
 
