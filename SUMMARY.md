@@ -1,7 +1,6 @@
 # Table of contents
 
 * [AdminJS](README.md)
-* [⚠ API Reference](api-reference.md)
 
 ## Installation
 
@@ -35,3 +34,4 @@
 * [Adding Role-Based Access Control](tutorials/adding-role-based-access-control.md)
 * [Internationalization (i18n)](tutorials/internationalization-i18n.md)
 * [Content Management System](tutorials/content-management-system.md)
+* [⚠ API Reference](tutorials/api-reference.md)
