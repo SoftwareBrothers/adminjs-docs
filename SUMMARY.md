@@ -25,6 +25,11 @@
 * [Resource](basics/resource.md)
 * [Action](basics/action.md)
 * [Property](basics/property.md)
+* [Features](basics/features/README.md)
+  * [Logger](basics/features/logger.md)
+  * [Import & Export](basics/features/import-and-export.md)
+  * [Password](basics/features/password.md)
+  * [Writing your own features](basics/features/writing-your-own-features.md)
 
 ## UI Customizations
 
