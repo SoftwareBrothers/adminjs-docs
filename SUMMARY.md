@@ -26,6 +26,7 @@
 * [Action](basics/action.md)
 * [Property](basics/property.md)
 * [Features](basics/features/README.md)
+  * [Upload](basics/features/upload.md)
   * [Logger](basics/features/logger.md)
   * [Import & Export](basics/features/import-and-export.md)
   * [Password](basics/features/password.md)
