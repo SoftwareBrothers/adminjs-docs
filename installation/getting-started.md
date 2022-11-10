@@ -45,3 +45,21 @@ After you have installed AdminJS dependencies, proceed to:
 
 * [Plugins](plugins/) section for instructions on how to setup AdminJS with your framework.
 * [Adapters](adapters/) section for instructions on how to connect your AdminJS instance to your database.
+
+### Frontend bundling
+
+AdminJS needs to generate its own frontend. In the production environment, you would bundle all frontend files during build step of your deployment process, but that would be quite annoying to do in development.
+
+For this reason you should add `adminJS.watch()` function call after setting up all plugins and adapters. This only affects development environment (`process.env.NODE_ENV === 'development'`) and launches a separate bundling process in the background.
+
+```typescript
+import AdminJS from 'adminjs'
+
+const adminJS = new AdminJS({
+    // ...
+})
+
+adminJS.watch()
+```
+
+Without this step in development, AdminJS will start but won't display anything useful in the browser (except for some parsing errors in the console).

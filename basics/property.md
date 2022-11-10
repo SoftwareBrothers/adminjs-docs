@@ -33,27 +33,20 @@ const RandomPicture: React.FC<ShowPropertyProps> = (props) => {
 export default RandomPicture
 ```
 
-```typescript
-import AdminJS from 'adminjs'
-// other imports
-
-const RANDOM_PICTURE = AdminJS.bundle('./random-picture')
-
-const UserResource = {
-  resource: User,
+<pre class="language-typescript"><code class="lang-typescript"><strong>const UserResource = {
+</strong>  resource: User,
   options: {
     properties: {
       randomPicture: {
         type: 'string',
         components: {
-          list: RANDOM_PICTURE,
-          show: RANDOM_PICTURE,
+          list: Components.MyCustomAction, // see "Writing your own Components"
+          show: Components.MyCustomAction,
         },
       },
     },
   },
-}
-```
+}</code></pre>
 
 Every property can be further customized. That will be covered in the later parts of this section.
 

@@ -96,6 +96,20 @@ const feature = buildFeature({
 })
 ```
 
+If you need to access AdminJS instance (for example to add or override components, see [writing-your-own-components.md](../ui-customization/writing-your-own-components.md "mention")), you can do so like this:
+
+```typescript
+const { buildFeature } = require('adminjs')
+
+const feature = buildFeature(admin => {
+    const MyComponent = admin.loader.add('MyComponent', './my-component')
+    
+    return {
+      // you can now use `MyComponent` here
+    }
+})
+```
+
 ### Available features
 
 #### Supported by AdminJS team

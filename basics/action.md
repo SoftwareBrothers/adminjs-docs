@@ -81,7 +81,7 @@ The `handler` must return `records` in case of `bulk` or `resource` actions or `
 
 The last important option is `component`. This can either be `false` which means that the backend `handler` will be triggered once you press the button or you can provide your custom component that will be rendered.
 
-An example with `component` usage:
+#### Action with custom component
 
 {% code title="my-custom-action.tsx" %}
 ```jsx
@@ -123,7 +123,7 @@ const UserResource = {
     actions: {
       myCustomAction: {
         actionType: 'record',
-        component: AdminJS.bundle('./my-custom-action'),
+        component: Components.MyCustomAction, // see "Writing your own Components"
         handler: (request, response, context) => {
           const { record, currentAdmin } = context
           return {
@@ -333,7 +333,7 @@ const UserResource = {
     actions: {
       myCustomAction: {
         actionType: 'record',
-        component: AdminJS.bundle('./my-custom-action'),
+        component: Components.MyCustomAction, // see "Writing your own Components"
         handler: (request, response, context) => {
           const { record, currentAdmin } = context
           return {

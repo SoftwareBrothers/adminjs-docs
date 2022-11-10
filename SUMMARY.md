@@ -32,14 +32,13 @@
   * [Password](basics/features/password.md)
   * [Writing your own features](basics/features/writing-your-own-features.md)
 
-## UI Customizations
+## UI Customization
 
-* [Overwriting CSS styles](ui-customizations/overwriting-css-styles.md)
-* [Customizing dashboard](ui-customizations/customize-dashboard.md)
+* [Writing your own Components](ui-customization/writing-your-own-components.md)
+* [Overwriting CSS styles](ui-customization/overwriting-css-styles.md)
 
 ## Tutorials
 
-* [Writing your own Components](tutorials/writing-your-own-components.md)
 * [Using AdminJS features](tutorials/using-adminjs-features.md)
 * [Adding Role-Based Access Control](tutorials/adding-role-based-access-control.md)
 * [Internationalization (i18n)](tutorials/internationalization-i18n.md)
