@@ -1,393 +1,320 @@
-# Adding Role-Based Access Control
+# Role-Based Access Control
 
-{% hint style="warning" %}
-This article is outdated and it may contain information that is no longer up-to-date. It will be re-written soon!
-{% endhint %}
+Role-based access control allows your application to limit access to resources, records and actions only to specific users. This is not a feature in AdminJS, but rather a way of configuring it to your needs using your own, custom code.
 
-In this brief tutorial, I will present how you can add a role-based Admin Panel to your Node.js app. You can use this knowledge to build an entire application with access roles for managing different sort of data in 10 minutes.
+## Setup
 
-ok — MVP version of that application :)
-
-### The stack
-
-These are the things we will use
-
-* as a router, we will use an Express framework
-* for persistent storage, we will use MongoDB with mongoose ODM
-* and of course - adminjs
-
-So let’s start!
-
-### Setup the application
-
-First of all, let’s create the folder and init new Node.js app there:
-
-```
-mkdir my-admin-app
-cd my-admin-app
-yarn init -y
-```
-
-Install the dependencies:
-
-```
-yarn add express express-formidable mongoose adminjs @adminjs/mongoose @adminjs/express
-```
-
-and copy this example app:
+Your app should be set up with a [plugin](../installation/plugins/) and an [adapter](../installation/adapters/) with the authenticated router. This will give us access to the user object throughout the AdminJS config file. Let's assume your user object will look similar to this TypeORM model:
 
 ```typescript
-// Requirements
-const mongoose = require('mongoose')
-const express = require('express')
-const AdminJS = require('adminjs')
-const AdminJSExpress = require('@adminjs/express')
+@Entity({ name: 'users' })
+class User extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  public id!: number;
 
-// We have to tell AdminJS that we will manage mongoose resources with it
-AdminJS.registerAdapter(require('@adminjs/mongoose'))
+  @Column()
+  public email!: string;
 
-// express server definition
-const app = express()
+  @Column()
+  public role!: string;
 
-// Resources definitions
-const User = mongoose.model('User', {
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-  role: { type: String, enum: ['admin', 'restricted'], required: true },
-})
-
-// Pass all configuration settings to AdminJS
-const adminJs = new AdminJS({
-  resources: [User],
-  rootPath: '/admin',
-})
-
-// Build and use a router which will handle all AdminJS routes
-const router = AdminJSExpress.buildRouter(adminJs)
-app.use(adminJs.options.rootPath, router)
-
-// Running the server
-const run = async () => {
-  await mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true })
-  await app.listen(8080, () => console.log(`Example app listening on port 8080!`))
+  @Column()
+  public password!: string;
 }
-
-run()
 ```
 
-Now (assuming you have MongoDB running) run the server to see if everything is working correctly:
+When setting up an authenticated router, there's an async `authenticate` function in the config. It receives email and password, and should return the matching user object like the one above (or `null` if credentials are invalid).
 
-```
-node index.js
-```
+## Managing users
 
-You should see:
+All passwords should be hashed in the database and never exposed to the outside world. AdminJS however doesn't know which fields of which models should be treated as such, so you need to manually remove passwords from the responses.
 
-```
-AdminJS: bundle ready
-Example app listening on port 8080!
-```
+This is done using `after` and `before` hooks - you can inspect the request and response objects and modify them before or after they're handled in AdminJS by removing or hashing all passwords. Note that `after` hook in the `edit` action is called twice - first time as `GET` to get the data for editing (we need to clear passwords there) and again as `POST` to update the data (here we need to hash the new password). Also, `list` action returns a _list_ of records, so we need to iterate over them to remove passwords. This makes most action hooks a little bit different.
 
-so open: http://localhost:8080/admin and play around with it.
-
-### Hash the password
-
-We see that the password is not hashed. So let’s change that!
-
-We will use [bcrypt](https://www.npmjs.com/package/bcrypt) library for hashing passwords:
-
-```
-yarn add bcrypt
-```
-
-Now we have to intercept the new action and change the _password_ to encrypted one.
-
-So let’s prepare our model first by renaming the password field in the database to _encryptedPassword_:
+Lastly, we can hide password fields from views that don't need to display them. This is done using `isVisible` setting in properties. Please remember that this only hides the UI elements, it doesn't prevent AdminJS from sending the property, so we still need those `after` hooks.
 
 ```typescript
-// Resources definitions
-const User = mongoose.model('User', {
-  email: { type: String, required: true },
-  encryptedPassword: { type: String, required: true },
-  role: { type: String, enum: ['admin', 'restricted'], required: true },
-})
-```
-
-Next, add some options to the AdminJS _User_ model. We will create a new virtual property called _password_ (because we don’t have a password in the database anymore). And we will show it only on an edit page.
-
-Secondly, we create a before action hook which will hash the password.
-
-This is how all of this will look:
-
-```typescript
-// Pass all configuration settings to AdminJS
-const adminJs = new AdminJS({
-  resources: [{
-    resource: User,
-    options: {
-      properties: {
-        encryptedPassword: {
-          isVisible: false,
-        },
-        password: {
-          type: 'string',
-          isVisible: {
-            list: false, edit: true, filter: false, show: false,
-          },
+const userResource: ResourceWithOptions = {
+  resource: User,
+  options: {
+    actions: {
+      new: {
+        before: async (request) => {
+          if (request.payload?.password) {
+            request.payload.password = hash(request.payload.password);
+          }
+          return request;
         },
       },
-      actions: {
-        new: {
-          before: async (request) => {
-            if(request.payload.password) {
-              request.payload = {
-                ...request.payload,
-                encryptedPassword: await bcrypt.hash(request.payload.password, 10),
-                password: undefined,
-              }
-            }
-            return request
-          },
-        }
-      }
-    }
-  }],
-  rootPath: '/admin',
-})
-```
-
-As you probably noticed we also hidden _encryptedPassword_ entirely from the UI.
-
-Ok, now is the time to create some real users! So open the Admin Panel and create 2 users: one with the _admin_ role and the other with the _restricted_ role.
-
-Remember their passwords because in the next paragraph we will add a login page.
-
-### Adding login page
-
-[module:@adminjs/express](../installation/plugins/express.md) plugin, which we use for attaching admin to express framework, has the option to authenticate AdminJS users. In order to use it, we have to change the _buildRouter_ function to the _buildAuthenticatedRouter_. Now we can pass the authentication method which will verify an email and a password.
-
-```typescript
-// Build and use a router which will handle all AdminJS routes
-const router = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
-  authenticate: async (email, password) => {
-    const user = await User.findOne({ email })
-    if (user) {
-      const matched = await bcrypt.compare(password, user.encryptedPassword)
-      if (matched) {
-        return user
-      }
-    }
-    return false
-  },
-  cookiePassword: 'some-secret-password-used-to-secure-cookie',
-})
-```
-
-Finally, install the authenticated router dependencies:
-
-```
-yarn add cookie-parser express-session
-```
-
-and we can run the server again and log in to the app.
-
-### Restricting access to an entire resource
-
-Having all of that, we can now implement a real **Role-Based Access Control**.
-
-To demonstrate this let’s create another collection —  _Cars_ with _name_, _owner_ and _colour_ fields.
-
-```typescript
-// Cars collection
-const Cars = mongoose.model('Car', {
-  name: String,
-  color: { type: String, enum: ['black'], required: true }, // Henry Ford
-  ownerId: {
-    type: mongoose.Types.ObjectId,
-    ref: 'User',
-  }
-})
-```
-
-Now, let’s disable modifying users collection so restricted admins will be able to only see the records.
-
-In order to do that we have to add the _isAccessible_ action parameter in User options for: _edit_, _new_ and _delete_ actions:
-
-```typescript
-isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'admin',
-```
-
-where the _currentAdmin_ is the object we returned in _buildAuthenticatedRouter_ authenticate function.
-
-Now only admins will be able to add new users.
-
-### Restricting access to selected records
-
-_isAccessible_ takes an entire [ActionContext](https://adminjs.page.link/action-interface-code) as an argument. That gives us lots of options. For instance, we can disable editing of cars which does not belong to _restricted_ users (_admins_ will still be able to edit everything).
-
-In order to achieve that we can pass the following function to both _edit_ and _delete_ actions in _Cars_ collection options:
-
-```typescript
-isAccessible: ({ currentAdmin, record }) => {
-  return currentAdmin && (
-    currentAdmin.role === 'admin'
-    || currentAdmin._id === record.param('ownerId')
-  )
-}
-```
-
-Seems fine but what with the _new_ action. We have to limit _restricted_ admins to only add their cars. We can do this by filling out _ownerId_ field automatically based on the currently logged-in user.
-
-First, we have to disable this field in the UI:
-
-```json
-properties: {
-  ownerId: {
-    isVisible: {
-      edit: false,
-      show: true,
-      list: true,
-      filter: true
-    }
-  }
-}
-```
-
-and add a before hook to new action:
-
-```typescript
-before: async (request, { currentAdmin }) => {
-  request.payload = {
-    ...request.payload,
-    ownerId: currentAdmin._id,
-  }  
-  return request
-}
-```
-
-And that’s it. We’ve just built an Admin Panel with Role-Based Access Control.
-
-And this is the entire code of the application:
-
-```typescript
-// Requirements
-const mongoose = require('mongoose')
-const express = require('express')
-const AdminJS = require('adminjs')
-const AdminJSExpress = require('@adminjs/express')
-const bcrypt = require('bcrypt')
-
-// We have to tell AdminJS that we will manage mongoose resources with it
-AdminJS.registerAdapter(require('@adminjs/mongoose'))
-
-// express server definition
-const app = express()
-
-// Resources definitions
-const User = mongoose.model('User', {
-  email: { type: String, required: true },
-  encryptedPassword: { type: String, required: true },
-  role: { type: String, enum: ['admin', 'restricted'], required: true },
-})
-
-// Cars collection
-const Cars = mongoose.model('Car', {
-  name: String,
-  color: { type: String, enum: ['black'], required: true }, // Henry Ford
-  ownerId: {
-    type: mongoose.Types.ObjectId,
-    ref: 'User',
-  }
-})
-
-// RBAC functions
-const canEditCars = ({ currentAdmin, record }) => {
-  return currentAdmin && (
-    currentAdmin.role === 'admin'
-    || currentAdmin._id === record.param('ownerId')
-  )
-}
-const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'admin'
-
-// Pass all configuration settings to AdminJS
-const adminJs = new AdminJS({
-  resources: [{
-    resource: Cars,
-    options: {
-      properties: {
-        ownerId: { isVisible: { edit: false, show: true, list: true, filter: true } }
-      },
-      actions: {
-        edit: { isAccessible: canEditCars },
-        delete: { isAccessible: canEditCars },
-        new: {
-          before: async (request, { currentAdmin }) => {
-            request.payload = {
-              ...request.payload,
-              ownerId: currentAdmin._id,
-            }
-            return request
-          },
-        }
-      }
-    }
-  },
-  {
-    resource: User,
-    options: {
-      properties: {
-        encryptedPassword: { isVisible: false },
-        password: {
-          type: 'string',
-          isVisible: {
-            list: false, edit: true, filter: false, show: false,
-          },
+      show: {
+        after: async (response: RecordActionResponse) => {
+          response.record.params.password = '';
+          return response;
         },
       },
-      actions: {
-        new: {
-          before: async (request) => {
-            if(request.payload.password) {
-              request.payload = {
-                ...request.payload,
-                encryptedPassword: await bcrypt.hash(request.payload.password, 10),
-                password: undefined,
-              }
+      edit: {
+        before: async (request) => {
+          // no need to hash on GET requests, we'll remove passwords there anyway
+          if (request.method === 'post') {
+            // hash only if password is present, delete otherwise
+            // so we don't overwrite it
+            if (request.payload?.password) {
+              request.payload.password = hash(request.payload.password);
+            } else {
+              delete request.payload?.password;
             }
-            return request
-          },
+          }
+          return request;
         },
-        edit: { isAccessible: canModifyUsers },
-        delete: { isAccessible: canModifyUsers },
-        new: { isAccessible: canModifyUsers },
-      }
-    }
-  }],
-  rootPath: '/admin',
-})
-
-// Build and use a router which will handle all AdminJS routes
-const router = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
-  authenticate: async (email, password) => {
-    const user = await User.findOne({ email })
-    if (user) {
-      const matched = await bcrypt.compare(password, user.encryptedPassword)
-      if (matched) {
-        return user
-      }
-    }
-    return false
+        after: async (response: RecordActionResponse) => {
+          response.record.params.password = '';
+          return response;
+        },
+      },
+      list: {
+        after: async (response: ListActionResponse) => {
+          response.records.forEach((record) => {
+            record.params.password = '';
+          });
+          return response;
+        },
+      },
+    },
+    properties: {
+      password: {
+        isVisible: {
+          list: false,
+          filter: false,
+          show: false,
+          edit: true, // we only show it in the edit view
+        },
+      },
+    },
   },
-  cookiePassword: 'some-secret-password-used-to-secure-cookie',
-})
+};
+```
 
-app.use(adminJs.options.rootPath, router)
+You can find more information about adding logic to your properties in the Property Logic tutorial.
 
-// Running the server
-const run = async () => {
-  await mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true })
-  await app.listen(8080, () => console.log(`Example app listening on port 8080!`))
-}
+## Restricting access to actions
 
-run()
+To remove access to a whole action you can use `isAccessible` setting. This will remove the UI elements and block all API requests for those specific actions.
+
+```typescript
+const someResource: ResourceWithOptions = {
+  resource: Something,
+  options: {
+    actions: {
+      new: {
+        isAccessible: false,
+      },
+    },
+  },
+};
+```
+
+You can also pass it a function that decides whether currently performed action is accessible depending on context like current user:
+
+```typescript
+const someResource: ResourceWithOptions = {
+  resource: Something,
+  options: {
+    actions: {
+      new: {
+        isAccessible: ({ currentAdmin }) => currentAdmin.role === 'admin',
+      },
+    },
+  },
+};
+```
+
+Or restrict access to specific actions based on the content of the record. All this applies to custom actions as well.
+
+```typescript
+const someResource: ResourceWithOptions = {
+  resource: Something,
+  options: {
+    actions: {
+      publish: {
+        isAccessible: ({ record }) => !record.params.published,s
+        // rest of the custom action code
+      },
+    },
+  },
+};
+```
+
+### Difference between `isAccessible` and `isVisible`
+
+Both of those settings hide specific actions from the UI, but `isAccessible` also blocks API calls to this action. If you have custom components where you want to programatically call API endpoints for specific action, but don't want to display it to the user, you can use `isVisible` to hide it instead. This is often useful for custom actions that have some additional logic behind triggering them.
+
+## Restricting access to specific properties
+
+By default, AdminJS displays and allows editing of all properties of an object. You can control that to a degree using options `listProperties`, `editProperties` etc, but this hides the UI for all users. Hiding these properties based on user's role is a little bit more involved.
+
+In general, you want to capture the `resource` object before it's rendered by an action component, and remove all properties that shouldn't be displayed for this specific role. You do this by creating a custom action component that adjusts the data and passes it back into the default action component.
+
+```typescript
+import React, { FC } from 'react';
+import {
+  ActionProps,
+  BaseActionComponent,
+  BasePropertyJSON,
+  useCurrentAdmin,
+} from 'adminjs';
+
+const CustomAction: FC<ActionProps> = (props) => {
+  const [currentAdmin] = useCurrentAdmin();
+  const newProps = { ...props };
+  
+  // This is important - `component` option controls which custom
+  // component is rendered by `BaseActionComponent` and we don't
+  // want to render this code here again. That would create an
+  // infinite loop.
+  newProps.action = { ...newProps.action, component: undefined };
+
+  // Configuration is stored in each property's custom props.
+  const filter = (property: BasePropertyJSON) => {
+    const { role } = property.custom;
+    return !role || currentAdmin?.role === String(role);
+  };
+
+  // Since we want to remove properties from all actions, a common
+  // filtering function can be used.
+  const { resource } = newProps;
+  resource.listProperties = resource.listProperties.filter(filter);
+  resource.editProperties = resource.editProperties.filter(filter);
+  resource.showProperties = resource.showProperties.filter(filter);
+  resource.filterProperties = resource.filterProperties.filter(filter);
+
+  // `BaseActionComponent` will now render the default action component
+  return <BaseActionComponent {...newProps} />;
+};
+
+export default CustomAction;
+```
+
+The code above will hide the UI elements on the frontend, but the responses from the API will still contain all data that was hidden. Editing hidden data with tools like Postman will also be possible. You may want to patch that up using action hooks. Here's an example of an `after` hook that is generalized for every action:
+
+```typescript
+const roleAccessControlAfterHook = async (
+  response: any,
+  _: any,
+  context: ActionContext,
+) => {
+  const { properties } = context.resource
+    .decorate()
+    .toJSON(context.currentAdmin);
+  const targetRole = context.currentAdmin?.role;
+  const propertiesToRemove = Object.entries(properties)
+    .filter(
+      ([_, { custom }]) => custom.role && String(custom.role) !== targetRole,
+    )
+    .map(([name]) => name);
+
+  const cleanupRecord = (record: RecordJSON) => {
+    propertiesToRemove.forEach((name) => delete record.params[name]);
+  };
+  if (response.record) {
+    cleanupRecord(response.record);
+  }
+  if (response.records) {
+    response.records.forEach(cleanupRecord);
+  }
+  return response;
+};
+```
+
+Similar thing can be implemented for `POST` request in `before` hooks in `edit` and `new` actions in order to prevent editing those fields.
+
+```typescript
+const roleAccessControlBeforeHook: Before = async (request, context) => {
+  const { method, payload } = request;
+  if (method !== 'post' || !payload) {
+    return request;
+  }
+  const { properties } = context.resource
+    .decorate()
+    .toJSON(context.currentAdmin);
+  const targetRole = context.currentAdmin?.role;
+  const propertiesToRemove = Object.entries(properties)
+    .filter(
+      ([_, { custom }]) => custom.role && String(custom.role) !== targetRole,
+    )
+    .map(([name]) => name);
+  propertiesToRemove.forEach((name) => delete payload[name]);
+  return request;
+};
+```
+
+In case of the `new` action you might want to add additional `before` hook that would set a default value for the fields you're restricting if they are required in the database.
+
+```typescript
+const defaultValuesBeforeHook: Before = async (request, context) => {
+  const { payload, method } = request;
+  if (method !== 'post' || !payload || context.action.name !== 'new') {
+    return request;
+  }
+  const { properties } = context.resource
+    .decorate()
+    .toJSON(context.currentAdmin);
+  Object.entries(properties).forEach(([name, { custom }]) => {
+    if (custom.defaultValue && payload[name] === undefined) {
+      payload[name] = custom.defaultValue;
+    }
+  });
+  return request;
+};
+```
+
+If you need to reuse this functionality in other resources, it might be a good idea to pack it into a feature:
+
+```typescript
+const roleBasedAccessControl = buildFeature((admin) => {
+  const CustomAction = admin.componentLoader.add(
+    'CustomAction',
+    './custom-action',
+  );
+  return {
+    actions: {
+      new: {
+        component: CustomAction,
+        before: [roleAccessControlBeforeHook, defaultValuesBeforeHook],
+        after: [roleAccessControlAfterHook],
+      },
+      edit: {
+        component: CustomAction,
+        before: [roleAccessControlBeforeHook],
+        after: [roleAccessControlAfterHook],
+      },
+      show: {
+        component: CustomAction,
+        after: [roleAccessControlAfterHook],
+      },
+      list: {
+        component: CustomAction,
+        after: [roleAccessControlAfterHook],
+      },
+    },
+  };
+});
+```
+
+Finally, this configuration will hide the properties specified in the action config from users without a specific role:
+
+```typescript
+const someResource: ResourceWithOptions = {
+  resource: Something,
+  features: [roleBasedAccessControl],
+  options: {
+    properties: {
+      superSecretAdminProperty: {
+        custom: {
+          role: 'admin',
+          defaultValue: 'a secret',
+        },
+      },
+    },
+  },
+};
 ```
