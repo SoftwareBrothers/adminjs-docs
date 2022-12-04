@@ -44,13 +44,13 @@
 * [Internationalization (i18n)](tutorials/internationalization-i18n.md)
 * [Content Management System](tutorials/content-management-system.md)
 
-## ☁ Cloud Hosting
+## ☁ Deployment
 
-* [Overview](cloud-hosting/overview.md)
-* [Create an Application](cloud-hosting/create-an-application.md)
-* [Generate API Key & Secret](cloud-hosting/generate-api-key-and-secret.md)
-* [Deploying the application using CLI](cloud-hosting/deploying-the-application-using-cli.md)
-* [Editing environment variables](cloud-hosting/editing-environment-variables.md)
+* [Overview](deployment/overview.md)
+* [Create an Application](deployment/create-an-application.md)
+* [Generate API Key & Secret](deployment/generate-api-key-and-secret.md)
+* [Deploying the application using CLI](deployment/deploying-the-application-using-cli.md)
+* [Editing environment variables](deployment/editing-environment-variables.md)
 
 ***
 
