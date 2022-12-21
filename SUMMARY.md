@@ -37,6 +37,7 @@
 * [Writing your own Components](ui-customization/writing-your-own-components.md)
 * [Overwriting CSS styles](ui-customization/overwriting-css-styles.md)
 * [Dashboard customization](ui-customization/dashboard-customization.md)
+* [Changing the form view](ui-customization/changing-the-form-view.md)
 
 ## Tutorials
 
