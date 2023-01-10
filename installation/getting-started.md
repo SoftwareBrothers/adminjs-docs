@@ -37,6 +37,7 @@ $ yarn add @adminjs/mongoose               # for Mongoose
 $ yarn add @adminjs/prisma                 # for Prisma
 $ yarn add @adminjs/mikroorm               # for MikroORM
 $ yarn add @adminjs/objection              # for Objection
+$ yarn add @adminjs/sql                    # for raw SQL, currently supports only Postgres
 ```
 
 ### Setup

@@ -18,6 +18,7 @@
   * [Prisma](installation/adapters/prisma.md)
   * [MikroORM](installation/adapters/mikroorm.md)
   * [Objection](installation/adapters/objection.md)
+  * [SQL](installation/adapters/sql.md)
 * [Troubleshooting](installation/troubleshooting.md)
 
 ## Basics
