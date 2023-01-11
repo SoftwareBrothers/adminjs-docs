@@ -38,6 +38,8 @@ AdminJS also does not force it's own database schema upon you. Instead, it suppo
 * MikroORM (via `@adminjs/mikroorm`)
 * Objection (via `@adminjs/objection`)
 
+You may also connect directly to your SQL (currently only Postgres) database via `@adminjs/sql`.
+
 At the same time, you can fully customize the look of AdminJS panel. The user interface is built with React, similarly you can write your new React custom components to add new UI elements or override the existing ones.
 
 {% hint style="info" %}
