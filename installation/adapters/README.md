@@ -25,3 +25,7 @@ This section contains detailed instructions on how to connect your AdminJS insta
 {% content-ref url="objection.md" %}
 [objection.md](objection.md)
 {% endcontent-ref %}
+
+{% content-ref url="sql.md" %}
+[sql.md](sql.md)
+{% endcontent-ref %}
