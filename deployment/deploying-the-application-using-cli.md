@@ -38,6 +38,24 @@ include        string[]        A list of files/directories you wish to deploy.
 ```
 {% endcode %}
 
+### Starting the application
+
+Currently, AdminJS Cloud Hosting requires `start` script to be present in your `package.json` file. This is the command you use to start your application:
+
+{% code title="package.json" %}
+```json
+{
+  ...,
+  "scripts": {
+    ...,
+    "start": "node app.js"
+  }
+}
+```
+{% endcode %}
+
+In the future, we plan to extend application's configuration so that you can provide a custom start command.
+
 ## Commands
 
 As of version `1.1.0` the CLI only allows you to deploy your application.

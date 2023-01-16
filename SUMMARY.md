@@ -47,6 +47,10 @@
 * [Content Management System](tutorials/content-management-system.md)
 * [Custom components library](tutorials/custom-components-library.md)
 
+## FAQ
+
+* [Forgot Password](faq/resource.md)
+
 ## ☁ Deployment
 
 * [Overview](deployment/overview.md)
