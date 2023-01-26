@@ -93,8 +93,8 @@ import * as AdminJSSequelize from '@adminjs/sequelize'
 import { Category } from './category.entity'
 
 AdminJS.registerAdapter({
-  Resource: AdminJSSequelize.Resource,
-  Database: AdminJSSequelize.Database,
+  Resource: AdminJSSequelize.default.Resource,
+  Database: AdminJSSequelize.default.Database,
 })
 
 // ... other code
