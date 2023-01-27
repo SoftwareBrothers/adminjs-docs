@@ -31,6 +31,7 @@
   * [Logger](basics/features/logger.md)
   * [Import & Export](basics/features/import-and-export.md)
   * [Password](basics/features/password.md)
+  * [Leaflet Maps](basics/features/leaflet-maps.md)
   * [Writing your own features](basics/features/writing-your-own-features.md)
 
 ## UI Customization
