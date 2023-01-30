@@ -33,6 +33,14 @@
   * [Password](basics/features/password.md)
   * [Leaflet Maps](basics/features/leaflet-maps.md)
   * [Writing your own features](basics/features/writing-your-own-features.md)
+* [API](basics/api/README.md)
+  * [List](basics/api/list.md)
+  * [New](basics/api/new.md)
+  * [Search](basics/api/search.md)
+  * [Show](basics/api/show.md)
+  * [Edit](basics/api/edit.md)
+  * [Delete](basics/api/delete.md)
+  * [Bulk Delete](basics/api/bulk-delete.md)
 
 ## UI Customization
 
@@ -50,6 +58,7 @@
 
 ## FAQ
 
+* [Charts](faq/charts.md)
 * [Forgot Password](faq/resource.md)
 
 ## ☁ Deployment

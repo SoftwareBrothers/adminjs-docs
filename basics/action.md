@@ -8,7 +8,7 @@ description: >-
 
 ## Introduction
 
-AdminJS has 7 major default actions defined for each resource. Every action that is present in AdminJS panel (be it a default or a custom action) also has an automatically generated REST API endpoint: `/resources/{resourceId}/actions/{action}`
+AdminJS has 7 major default actions defined for each resource. Every action that is present in AdminJS panel (be it a default or a custom action) also has an automatically generated [REST API endpoint](api/): `/resources/{resourceId}/actions/{action}`
 
 All AdminJS actions can be categorised into:
 
