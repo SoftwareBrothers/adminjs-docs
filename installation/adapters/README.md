@@ -29,3 +29,7 @@ This section contains detailed instructions on how to connect your AdminJS insta
 {% content-ref url="sql.md" %}
 [sql.md](sql.md)
 {% endcontent-ref %}
+
+{% content-ref url="community-adapters/" %}
+[community-adapters](community-adapters/)
+{% endcontent-ref %}

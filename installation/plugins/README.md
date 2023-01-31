@@ -21,3 +21,7 @@ This section contains detailed instructions on how to setup a simple AdminJS pan
 {% content-ref url="koa.md" %}
 [koa.md](koa.md)
 {% endcontent-ref %}
+
+{% content-ref url="community-plugins/" %}
+[community-plugins](community-plugins/)
+{% endcontent-ref %}
