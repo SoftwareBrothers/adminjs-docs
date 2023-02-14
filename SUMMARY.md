@@ -63,6 +63,7 @@
 
 ## FAQ
 
+* [PDF Generator](faq/pdf-generator.md)
 * [Charts](faq/charts.md)
 * [Forgot Password](faq/resource.md)
 
