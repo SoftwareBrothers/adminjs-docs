@@ -9,16 +9,16 @@ description: >-
 In order to add a custom Forgot Password link to Admin's login page you will have to, first, override the login within your start function and provide another custom component that will serve as a login page.
 
 ```typescript
-admin.overrideLogin({ component: Login });
+admin.overrideLogin({ component: Login })
 ```
 
 The next step is to create a login page. Here is the default page with the forgot password hyperlink pointing to a  '/forgot-password' address.
 
 {% code title="login.tsx" %}
 ```typescript
-import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import { useSelector } from 'react-redux';
+import React from 'react'
+import styled, { createGlobalStyle } from 'styled-components'
+import { useSelector } from 'react-redux'
 import {
   Box,
   H5,
@@ -32,8 +32,8 @@ import {
   MessageBox,
   MadeWithLove,
   themeGet,
-} from '@adminjs/design-system';
-import { useTranslation, ReduxState } from 'adminjs';
+} from '@adminjs/design-system'
+import { useTranslation, ReduxState } from 'adminjs'
 
 const GlobalStyle = createGlobalStyle`
   html, body, #app {
@@ -42,29 +42,29 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-`;
+`
 
 const Wrapper = styled(Box)`
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100%;
-`;
+`
 
 const StyledLogo = styled.img`
   max-width: 200px;
   margin: ${themeGet('space', 'md')} 0;
-`;
+`
 
 export type LoginProps = {
-  message?: string;
-  action: string;
-};
+  message?: string
+  action: string
+}
 
 export const Login: React.FC<LoginProps> = (props) => {
-  const { action, message } = props;
-  const { translateLabel, translateButton, translateProperty, translateMessage } = useTranslation();
-  const branding = useSelector((state: ReduxState) => state.branding);
+  const { action, message } = props
+  const { translateLabel, translateButton, translateProperty, translateMessage } = useTranslation()
+  const branding = useSelector((state: ReduxState) => state.branding)
 
   return (
     <>
@@ -136,10 +136,10 @@ export const Login: React.FC<LoginProps> = (props) => {
         ) : null}
       </Wrapper>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
 
 ```
 {% endcode %}
@@ -152,12 +152,12 @@ const localeEn = {
   translations: {
     messages: {
       forgotPasswordQuestion: 'Trouble logging in?',
-      forgotPassword: 'Forgot password',
-    },
-  },
-};
+      forgotPassword: 'Forgot password'
+    }
+  }
+}
 
-export default localeEn;
+export default localeEn
 
 ```
 

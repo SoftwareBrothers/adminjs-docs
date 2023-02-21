@@ -77,4 +77,4 @@
 
 ***
 
-* [⚠ Legacy documentation](legacy-documentation.md)
+* [⚠ Legacy documentation](api-reference.md)
