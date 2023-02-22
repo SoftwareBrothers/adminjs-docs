@@ -1,6 +1,6 @@
 # Getting started
 
-The "Getting started" section is an overview and quick explanation of AdminJS ecosystem. Detailed instructions for setting up your AdminJS application and connecting it to your database(s) are described in separate guides (scroll down to [Setup](getting-started.md#undefined) for quick links).
+The "Getting started" section is an overview and quick explanation of AdminJS ecosystem. Detailed instructions for setting up your AdminJS application and connecting it to your database(s) are described in separate guides (scroll down to [Setup](getting-started.md#setup) for quick links).
 
 ### Overview
 
