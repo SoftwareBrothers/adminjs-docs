@@ -20,7 +20,7 @@ As of version `5.x.x` of `@adminjs/nestjs`, the plugin only supports Nest server
 If you are starting a new project, install `nest-cli` and bootstrap the project:
 
 ```bash
-$ npm i -g nest-cli
+$ npm i -g @nestjs/cli
 $ nest new
 ```
 {% endhint %}
