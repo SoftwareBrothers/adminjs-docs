@@ -62,6 +62,7 @@
 * [Internationalization (i18n)](tutorials/internationalization-i18n.md)
 * [Content Management System](tutorials/content-management-system.md)
 * [Custom components library](tutorials/custom-components-library.md)
+* [Custom component internationalization](tutorials/custom-component-internationalization.md)
 
 ## FAQ
 

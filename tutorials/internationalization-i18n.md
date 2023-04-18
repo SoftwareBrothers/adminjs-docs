@@ -86,13 +86,13 @@ locale: {
 
 All the translation keys are divided into the following groups:
 
-* **actions** - translations for all actions - both default actions, and those created by you.&#x20;
-* **buttons** - translations for all kinds of buttons.&#x20;
-* **messages** - translations for all messages in the app&#x20;
-* **labels** - translations for all labels - usually one word. Labels are used to translate resource names.&#x20;
-* **properties** - translations for all properties.&#x20;
-* **components** - translations for custom components&#x20;
-* **pages** - translations for custom pages
+* **actions** - translations for all [actions](https://adminjs.page.link/action-interface-code) - both default actions, and those created by you.
+* **buttons** - translations for all kinds of buttons.
+* **messages** - translations for all messages in the app
+* **labels** - translations for all labels - usually one word. Labels are used to translate resource names.
+* **properties** - translations for all properties.
+* **pages** - (new in version 7) translations for your pages labels
+* **components** - (new in version 7) a section which allows you to scope translations to components
 
 All of them can be specified globally or for a specific resource.
 
