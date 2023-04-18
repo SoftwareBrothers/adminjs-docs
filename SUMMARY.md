@@ -24,7 +24,8 @@
   * [Mongoose](installation/adapters/mongoose.md)
   * [Community Adapters](installation/adapters/community-adapters/README.md)
     * [AdonisJS](https://github.com/chirgjin/adminjs-adonis)
-* [Troubleshooting](installation/troubleshooting.md)
+* [What's new in v7?](installation/whats-new-in-v7.md)
+* [Migration Guide v7](installation/migration-guide-v7.md)
 
 ## Basics
 
@@ -46,6 +47,7 @@
   * [Edit](basics/api/edit.md)
   * [Delete](basics/api/delete.md)
   * [Bulk Delete](basics/api/bulk-delete.md)
+* [Themes](basics/themes.md)
 
 ## UI Customization
 

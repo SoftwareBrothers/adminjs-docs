@@ -17,12 +17,13 @@ Then add one line (`features`) to resource entry in AdminJS config.
 ```javascript
 import importExportFeature from '@adminjs/import-export';
 
+import componentLoader from './component-loader.js';
 ...
 
 {
   resource: Entity,
   features: [
-    importExportFeature(),
+    importExportFeature({ componentLoader }),
   ],
 }
 ```

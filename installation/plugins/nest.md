@@ -38,8 +38,8 @@ Next, add Nest plugin code into `imports` of your `AppModule`:
 import { Module } from '@nestjs/common'
 import { AdminModule } from '@adminjs/nestjs'
 
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
+import { AppController } from './app.controller.js'
+import { AppService } from './app.service.js'
 
 const DEFAULT_ADMIN = {
   email: 'admin@example.com',

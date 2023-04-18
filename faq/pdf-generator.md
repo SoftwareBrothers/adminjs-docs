@@ -94,6 +94,10 @@ Make sure you set the static path before building the router!
 {% code title="index.ts" %}
 ```typescript
 import path from 'path'
+import * as url from 'url'
+// other imports
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
 // ...
 

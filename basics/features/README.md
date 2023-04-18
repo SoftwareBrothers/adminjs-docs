@@ -8,7 +8,7 @@ Features should be included in `features` section of your resource, example:
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>import { ResourceWithOptions } from 'adminjs';
 </strong><strong>
-</strong><strong>import User from './user.entity';
+</strong><strong>import User from './user.entity.js';
 </strong><strong>
 </strong><strong>const UserResource: ResourceWithOptions = {
 </strong><strong>  resource: User,

@@ -20,7 +20,8 @@ Example model:
 {% code title="category.entity.ts" %}
 ```typescript
 import { DataTypes, Model, Optional } from 'sequelize'
-import sequelize from './index'
+
+import sequelize from './index.js'
 
 interface ICategory {
   id: number;
@@ -90,7 +91,8 @@ The configuration for non-Nest.js plugins is basically the same for each one of 
 ```typescript
 // ... other imports
 import * as AdminJSSequelize from '@adminjs/sequelize'
-import { Category } from './category.entity'
+
+import { Category } from './category.entity.js'
 
 AdminJS.registerAdapter({
   Resource: AdminJSSequelize.Resource,
@@ -152,7 +154,7 @@ This will allow you to pass Sequelize models for AdminJS to load. If we use the 
 {% code title="app.module.ts" %}
 ```typescript
 // ... other imports
-import { Category } from './category.entity'
+import { Category } from './category.entity.js'
 // ... other code
 AdminModule.createAdminAsync({
   useFactory: () => ({

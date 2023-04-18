@@ -53,7 +53,8 @@ The configuration for non-Nest.js plugins is basically the same for each one of 
 import * as AdminJSPrisma from '@adminjs/prisma'
 import { PrismaClient } from '@prisma/client'
 import { DMMFClass } from '@prisma/client/runtime'
-import { Category } from './category.entity'
+
+import { Category } from './category.entity.js'
 
 const prisma = new PrismaClient()
 
@@ -99,7 +100,8 @@ In your `app.module.ts` add these imports at the top of the file:
 ```typescript
 import * as AdminJSPrisma from '@adminjs/prisma'
 import AdminJS from 'adminjs'
-import { PrismaService } from './prisma.service' // PrismaService from Nest.js documentation
+
+import { PrismaService } from './prisma.service.js' // PrismaService from Nest.js documentation
 ```
 {% endcode %}
 
@@ -119,7 +121,7 @@ This will allow you to pass Prisma models for AdminJS to load. If we use the `Pu
 {% code title="app.module.ts" %}
 ```typescript
 // ... other imports
-import { Category } from './category.entity'
+import { Category } from './category.entity.js'
 // ... other code
 AdminModule.createAdminAsync({
   useFactory: () => {

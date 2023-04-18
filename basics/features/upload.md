@@ -14,7 +14,8 @@ There is possibility to use different storage for files:&#x20;
 
 To install the upload feature run:
 
-<pre class="language-shell"><code class="lang-shell"><strong>$ yarn add @adminjs/upload</strong></code></pre>
+<pre class="language-shell"><code class="lang-shell"><strong>$ yarn add @adminjs/upload
+</strong></code></pre>
 
 The main concept of the upload feature is that it sends uploaded files to an external source. The database keeps the information about path and folder name where the file was stored.
 
@@ -43,15 +44,21 @@ Next, you should decide, where your files will be stored and prepare resource en
 {% tab title="Local Filesystem" %}
 In this example your local server should have established `bucket` folder and it should be accessible by web browser (via `baseUrl` path)
 
-```javascript
+<pre class="language-javascript"><code class="lang-javascript"><strong>import * as url from 'url'
+</strong>// other imports
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
+
 app.use(express.static(path.join(__dirname, '../public')));
-```
+</code></pre>
 
 
 
 ```typescript
 import uploadFeature from '@adminjs/upload';
-import { File } from './models/file';
+
+import { File } from './models/file.js';
+import componentLoader from './component-loader.js';
 
 const localProvider = {
   bucket: 'public/files',
@@ -81,6 +88,7 @@ export const files = {
   },
   features: [
     uploadFeature({
+      componentLoader, 
       provider: { local: localProvider },
       validation: { mimeTypes: ['image/png', 'application/pdf', 'audio/mpeg'] },
     }),
@@ -92,7 +100,8 @@ export const files = {
 {% tab title="AWS S3" %}
 ```typescript
 import uploadFeature from '@adminjs/upload';
-import { File } from './models/file';
+
+import { File } from './models/file.js';
 
 const AWScredentials = {
   accessKeyId: 'AWS_ACCESS_KEY_ID',
@@ -132,7 +141,8 @@ export const files = {
 
 {% tab title="Google Cloud Storage" %}
 <pre class="language-typescript"><code class="lang-typescript">import uploadFeature from '@adminjs/upload';
-import { File } from './models/file';
+
+import { File } from './models/file.js';
 
 <strong>const GCScredentials = {
 </strong>  serviceAccount: 'SERVICE_ACCOUNT',
@@ -165,14 +175,15 @@ export const files = {
       validation: { mimeTypes: ['image/png'] },
     }),
   ],
-};</code></pre>
+};
+</code></pre>
 {% endtab %}
 {% endtabs %}
 
 After that add files resource to AdminJS options config
 
 ```typescript
-import { files } from './resources/files';
+import { files } from './resources/files.js';
 
 const adminJsOptions = {
   resources: [
@@ -220,7 +231,8 @@ export class File extends BaseEntity {
 {% tab title="Resource" %}
 ```typescript
 import uploadFeature from '@adminjs/upload';
-import { File } from './models/file';
+
+import { File } from './models/file.js';
 
 const localProvider = {
   bucket: 'public/files',

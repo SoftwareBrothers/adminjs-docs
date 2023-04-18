@@ -68,7 +68,7 @@ The feature goes inside `features` in your resource specification. Take a look a
 ```typescript
 import leafletFeatures, { getLeafletDist } from '@adminjs/leaflet';
 // other imports
-import Marker from './marker.entity';
+import Marker from './marker.entity.js';
 
 // Other code - remember to set up the common configuration!
 
@@ -144,7 +144,7 @@ The feature goes inside `features` in your resource specification. Take a look a
 ```typescript
 import leafletFeatures, { getLeafletDist } from '@adminjs/leaflet';
 // other imports
-import MapEntity from './map.entity';
+import MapEntity from './map.entity.js';
 
 // Other code - remember to set up the common configuration!
 
@@ -233,7 +233,10 @@ An example application can be found in [@adminjs/leaflet GitHub repository](http
 
 ```bash
 $ git clone https://github.com/SoftwareBrothers/adminjs-leaflet.git
-$ cd adminjs-leaflet/example-app
+$ cd adminjs-leaflet
+$ yarn install
+$ yarn build
+$ cd example-app
 $ yarn install
 $ docker-compose up -d
 $ yarn start

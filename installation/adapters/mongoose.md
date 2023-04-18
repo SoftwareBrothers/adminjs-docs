@@ -51,7 +51,8 @@ The configuration for non-Nest.js plugins is basically the same for each one of 
 // ... other imports
 import mongoose from 'mongoose'
 import * as AdminJSMongoose from '@adminjs/mongoose'
-import { Category } from './category.entity'
+
+import { Category } from './category.entity.js'
 
 AdminJS.registerAdapter({
   Resource: AdminJSMongoose.Resource,
@@ -110,7 +111,7 @@ This will allow you to pass Mongoose models for AdminJS to load. If we use the `
 {% code title="app.module.ts" %}
 ```typescript
 // ... other imports
-import { Category } from './category.entity'
+import { Category } from './category.entity.js'
 // ... other code
 AdminModule.createAdminAsync({
   useFactory: () => ({

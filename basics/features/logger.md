@@ -22,8 +22,9 @@ Then we have to define `Log` entity - the place we will track changes.  Below yo
 {% tab title="Sequelize" %}
 ```typescript
 import { DataTypes, Model } from 'sequelize';
-import db from './sequelize.connection';
-import User from './user.entity';
+
+import db from './sequelize.connection.js';
+import User from './user.entity.js';
 
 export interface ILog = {
   id: number;
@@ -224,7 +225,7 @@ export const LogModel = model<Log>('Log', LogSchema);
 
 {% tab title="ObjectionJS" %}
 ```typescript
-import { BaseModel } from '../utils/base-model';
+import { BaseModel } from '../utils/base-model.js';
 
 class Log extends BaseModel {
   id: number;
@@ -286,12 +287,15 @@ To get logger to work, add extra property to resource config. Below you can find
 
 ```javascript
 import loggerFeature from '@adminjs/logger';
-import ResourceModel from './resource.entity';
+
+import ResourceModel from './resource.entity.js';
+import componentLoader from './component-loader.js';
 
 export default {
   resource: ResourceModel,
   features: [
     loggerFeature({
+      componentLoader,
       propertiesMapping: {
         user: 'userId',
       },
@@ -308,22 +312,23 @@ To have Log resource appear in AdminJS panel, we have to define it first.&#x20;
 
 ```javascript
 import { createLoggerResource } from '@adminjs/logger';
-import Log from './logs.entity';
+
+import Log from './logs.entity.js';
 
 const config = {
-    resource: Log,
-    featureOptions: {
-        propertiesMapping: {
-            recordTitle: 'title' //field to store logged record's title
-        },
-        userIdAttribute: 'id', //primary key currently logged user
-        resourceOptions: {
-            navigation: {
-                name: 'SectionName',
-                icon: 'iconName'
-            }
-        }
+  resource: Log,
+  featureOptions: {
+    propertiesMapping: {
+      recordTitle: 'title' //field to store logged record's title
+    ,
+    userIdAttribute: 'id', //primary key currently logged user
+    resourceOptions: {
+      navigation: {
+        name: 'SectionName',
+        icon: 'iconName'
+      }
     }
+  }
 }
 
 export default createLoggerResource(config)

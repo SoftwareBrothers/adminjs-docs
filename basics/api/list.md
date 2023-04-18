@@ -28,7 +28,7 @@ description: allows you to list and filer all the records for a given resource
 
 **Example**&#x20;
 
-__[_https://demo.adminjs.com_/admin/api/resources/Admin/actions/list?direction=desc\&sortBy=\_id\&filters.email=admin\&page=1](https://demo.adminjs.com/admin/api/resources/Admin/actions/list?direction=desc\&sortBy=\_id\&filters.email=admin\&page=1)
+[_https://demo.adminjs.com_/admin/api/resources/Admin/actions/list?direction=desc\&sortBy=\_id\&filters.email=admin\&page=1](https://demo.adminjs.com/admin/api/resources/Admin/actions/list?direction=desc\&sortBy=\_id\&filters.email=admin\&page=1)
 
 ```json
 {

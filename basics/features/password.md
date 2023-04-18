@@ -17,7 +17,9 @@ Next step is to add feature option to user resource
 ```javascript
 import argon2 from 'argon2';
 import passwordsFeature from '@adminjs/passwords';
-import User from './models/user';
+
+import User from './models/user.js';
+import componentLoader from './component-loader.js';
 
 const adminJsOptions = {
   resources: [
@@ -29,6 +31,7 @@ const adminJsOptions = {
       },
       features: [
         passwordsFeature({
+          componentLoader,
           properties: {
             encryptedPassword: 'password',
             password: 'newPassword'

@@ -31,7 +31,8 @@ As you can see, in the example above you have to take care of merging previous o
 
 ```javascript
 import { buildFeature, FeatureType } from 'adminjs';
-import SomeModel from 'some-model.entity';
+
+import SomeModel from 'some-model.entity.js';
 
 const someBeforeHook = () => { /* noop */ };
 

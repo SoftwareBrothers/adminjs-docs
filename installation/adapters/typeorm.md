@@ -46,8 +46,9 @@ The configuration for non-Nest.js plugins is basically the same for each one of 
 ```typescript
 // ... other imports
 import * as AdminJSTypeorm from '@adminjs/typeorm'
-import dataSource from './path/to/your/datasource'
-import { Organization } from './organization.entity'
+
+import dataSource from './path/to/your/datasource.js'
+import { Organization } from './organization.entity.js'
 
 AdminJS.registerAdapter({
   Resource: AdminJSTypeorm.Resource,
@@ -107,7 +108,7 @@ This will allow you to pass TypeORM models for AdminJS to load. If we use the `O
 {% code title="app.module.ts" %}
 ```typescript
 // ... other imports
-import { Organization } from './organization.entity'
+import { Organization } from './organization.entity.js'
 // ... other code
 AdminModule.createAdminAsync({
   useFactory: () => ({

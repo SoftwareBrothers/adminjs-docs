@@ -28,9 +28,9 @@ Afterwards, follow one of the examples below.
 {% tab title="Javascript" %}
 {% code title="app.js" %}
 ```javascript
-const AdminJS = require('adminjs')
-const AdminJSKoa = require('@adminjs/koa')
-const Koa = require('koa')
+import AdminJS from 'adminjs'
+import AdminJSKoa from '@adminjs/koa'
+import Koa from 'koa'
 
 const PORT = 3000
 
@@ -55,19 +55,13 @@ const start = async () => {
 start()
 ```
 {% endcode %}
-
-Now you can start your AdminJS application:
-
-```bash
-$ node app.js
-```
 {% endtab %}
 
 {% tab title="Typescript" %}
 Install additional dependencies:
 
 ```bash
-$ yarn add -D ts-node @types/koa
+$ yarn add -D @types/koa
 ```
 
 {% code title="app.ts" %}
@@ -99,12 +93,6 @@ const start = async () => {
 start()
 ```
 {% endcode %}
-
-Now you can start your AdminJS application:
-
-```bash
-$ ts-node app.ts
-```
 {% endtab %}
 {% endtabs %}
 
@@ -116,9 +104,9 @@ To add authentication, you must use `AdminJSKoa.buildAuthenticatedRouter` instea
 {% tab title="Javascript" %}
 {% code title="app.js" %}
 ```javascript
-const AdminJS = require('adminjs')
-const AdminJSKoa = require('@adminjs/koa')
-const Koa = require('koa')
+import AdminJS from 'adminjs'
+import AdminJSKoa from '@adminjs/koa'
+import Koa from 'koa'
 
 const PORT = 3000
 
@@ -171,19 +159,13 @@ start()
 {% endcode %}
 
 As you may have noticed, the `authenticate` function compares credentials you submit in the form with a hardcoded `DEFAULT_ADMIN` object. In your case, you might want to modify `authenticate` function's logic to compare form credentials against real database objects.
-
-Now you should be able to start the server and see a login form when you visit the AdminJS panel URL.
-
-```bash
-$ node app.js
-```
 {% endtab %}
 
 {% tab title="Typescript" %}
 Install additional dependencies:
 
 ```bash
-$ yarn add -D ts-node @types/koa
+$ yarn add -D @types/koa
 ```
 
 {% code title="app.ts" %}
@@ -243,12 +225,6 @@ start()
 {% endcode %}
 
 As you may have noticed, the `authenticate` function compares credentials you submit in the form with a hardcoded `DEFAULT_ADMIN` object. In your case, you might want to modify `authenticate` function's logic to compare form credentials against real database objects.
-
-Now you should be able to start the server and see a login form when you visit the AdminJS panel URL.
-
-```bash
-$ ts-node app.ts
-```
 {% endtab %}
 {% endtabs %}
 

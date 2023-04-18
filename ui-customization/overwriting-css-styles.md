@@ -12,7 +12,12 @@ This naming convention give you ability to style every resource, every action an
 
 First, you must assure that AdminJS has access to static files. For express based app you should add line similar to this:
 
-```
+```typescript
+import * as url from 'url'
+// other imports
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
+
 app.use(express.static(path.join(__dirname, "../public")));
 ```
 

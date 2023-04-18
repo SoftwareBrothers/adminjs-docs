@@ -60,9 +60,8 @@ export abstract class BaseModel extends Model {
 
 {% code title="office.entity.ts" %}
 ```typescript
-import { BaseModel } from '../base-model';
-
-import Manager from './manager.entity';
+import { BaseModel } from '../base-model.js';
+import Manager from './manager.entity.js';
 
 export interface OfficeAddress {
   street: string;
@@ -114,7 +113,8 @@ The rest of the setup is similar to other adapters:
 ```typescript
 // ... other imports
 import * as AdminJSObjection from '@adminjs/objection'
-import { Office } from './office.entity'
+
+import { Office } from './office.entity.js'
 
 AdminJS.registerAdapter({
   Resource: AdminJSObjection.Resource,

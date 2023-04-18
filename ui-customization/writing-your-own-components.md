@@ -35,7 +35,7 @@ export default MyInputComponent
 `./some-resource.ts`
 
 ```typescript
-import { Components } from './components'
+import { Components } from './components.js'
 
 export const SomeResource = {
   resource: Something, // database model
@@ -55,8 +55,8 @@ export const SomeResource = {
 `./index.ts`
 
 <pre class="language-typescript"><code class="lang-typescript">import { AdminJS } from 'adminjs'
-import { componentLoader } from './components'
-import { SomeResource } from './some-resource'
+import { componentLoader } from './components.js'
+import { SomeResource } from './some-resource.js'
 
 const admin = new AdminJS({
     resources: [SomeResource],
@@ -66,7 +66,8 @@ const admin = new AdminJS({
 
 admin.watch() // this builds your frontend code in development environment
 
-<strong>// rest of the adapter and plugin code</strong></code></pre>
+<strong>// rest of the adapter and plugin code
+</strong></code></pre>
 
 Components for actions are added in the exact same way, only in the action section of a resource instead of properties. Refer to [#action-with-custom-component](../basics/action.md#action-with-custom-component "mention") and [#creating-custom-properties](../basics/property.md#creating-custom-properties "mention") pages for more information.
 
@@ -112,9 +113,8 @@ AdminJS uses these dependencies internally, so they are exposed for your code wi
 **Other**
 
 * [axios](https://github.com/axios/axios)
-* [recharts](http://recharts.org/en-US/)
 * [flat](https://www.npmjs.com/package/flat)
-* [@carbon/icons-react](https://www.npmjs.com/package/@carbon/icons-react)
+* [react-feather](https://feathericons.com/)
 
 ### Props passed to components
 
@@ -205,7 +205,7 @@ You can also use custom components as full pages by specifying their name in the
 
 ```typescript
 import AdminJS from 'adminjs'
-import { Components } from './components'
+import { Components } from './components.js'
 
 new AdminJS({
     pages: {

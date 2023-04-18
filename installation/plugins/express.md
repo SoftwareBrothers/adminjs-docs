@@ -28,9 +28,9 @@ Afterwards, follow one of the examples below.
 {% tab title="Javascript" %}
 {% code title="app.js" %}
 ```javascript
-const AdminJS = require('adminjs')
-const AdminJSExpress = require('@adminjs/express')
-const express = require('express')
+import AdminJS from 'adminjs'
+import * as AdminJSExpress from '@adminjs/express'
+import express from 'express'
 
 const PORT = 3000
 
@@ -50,26 +50,19 @@ const start = async () => {
 start()
 ```
 {% endcode %}
-
-\
-Now you can start your AdminJS application:
-
-```bash
-$ node app.js
-```
 {% endtab %}
 
 {% tab title="Typescript" %}
-Install express types and `ts-node`:
+Install Express types:
 
 ```bash
-$ yarn add -D @types/express ts-node
+$ yarn add -D @types/express
 ```
 
 {% code title="app.ts" %}
 ```typescript
 import AdminJS from 'adminjs'
-import AdminJSExpress from '@adminjs/express'
+import * as AdminJSExpress from '@adminjs/express'
 import express from 'express'
 
 const PORT = 3000
@@ -92,13 +85,7 @@ start()
 {% endcode %}
 
 \
-Now you can start your AdminJS application:
-
-```bash
-$ ts-node app.ts
-```
-
-
+Now you can start your AdminJS application.
 {% endtab %}
 {% endtabs %}
 
@@ -118,11 +105,11 @@ $ yarn add connect-pg-simple
 
 {% code title="app.js" %}
 ```javascript
-const AdminJS = require('adminjs')
-const AdminJSExpress = require('@adminjs/express')
-const express = require('express')
-const Connect = require('connect-pg-simple')
-const session = require('express-session')
+import AdminJS from 'adminjs'
+import * as AdminJSExpress from '@adminjs/express'
+import express from 'express'
+import Connect from 'connect-pg-simple'
+import session from 'express-session'
 
 const PORT = 3000
 
@@ -146,7 +133,7 @@ const start = async () => {
   const ConnectSession = Connect(session)
   const sessionStore = new ConnectSession({
     conObject: {
-      connectionString: 'postgres://adminjs:adminjs@localhost:5435/adminjs',
+      connectionString: 'postgres://adminjs:@localhost:5432/adminjs',
       ssl: process.env.NODE_ENV === 'production',
     },
     tableName: 'session',
@@ -189,12 +176,6 @@ As you may have noticed, the `authenticate` function compares credentials you su
 {% hint style="info" %}
 If you plan to copy-paste this example, make sure you set the database connection string to a functional one.
 {% endhint %}
-
-Now you should be able to start the server and see a login form when you visit the AdminJS panel URL.
-
-```bash
-$ node app.js
-```
 {% endtab %}
 
 {% tab title="Typescript" %}
@@ -202,7 +183,7 @@ Install additional dependencies:
 
 ```bash
 $ yarn add connect-pg-simple
-$ yarn add -D @types/connect-pg-simple @types/express-session @types/express ts-node
+$ yarn add -D @types/connect-pg-simple @types/express-session @types/express
 ```
 
 {% code title="app.ts" %}
@@ -278,12 +259,6 @@ As you may have noticed, the `authenticate` function compares credentials you su
 {% hint style="info" %}
 If you plan to copy-paste this example, make sure you set the database connection string to a functional one.
 {% endhint %}
-
-Now you should be able to start the server and see a login form when you visit the AdminJS panel URL.
-
-```bash
-$ ts-node app.ts
-```
 {% endtab %}
 {% endtabs %}
 

@@ -139,8 +139,9 @@ The last part is adding the line chart component to our dashboard.
 {% code title="dashboard.tsx" %}
 ```tsx
 import { ApiClient } from 'adminjs'
-import { LineChartComponent } from './linechart.component'
 import React, { useState, useEffect } from 'react'
+
+import { LineChartComponent } from './linechart.component.js'
 
 const Dashboard: React.FC = () => {
   const [data, setData] = useState(null)

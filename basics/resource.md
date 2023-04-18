@@ -61,8 +61,8 @@ For other adapters the setup would be basically the same, you just have to pass 
 This option requires you to define all resources explicitly. It is also the recommended approach since it allows you to customize every resource. In order to define resources, you must specify `resources` property when setting up your AdminJS instance. Example:
 
 ```typescript
-import User from './user.entity'
-import Profile from './profile.entity'
+import User from './user.entity.js'
+import Profile from './profile.entity.js'
 
 // User and Profile are models defined in your ORM/ODM
 
@@ -264,7 +264,8 @@ Usage example:
 ```typescript
 import passwordsFeature from '@adminjs/passwords'
 import argon2 from 'argon2'
-import { User } from './user.entity'
+
+import { User } from './user.entity.js'
 
 const UserResource = {
   resource: User,

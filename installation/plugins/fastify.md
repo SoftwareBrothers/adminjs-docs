@@ -28,9 +28,9 @@ Afterwards, follow one of the examples below.
 {% tab title="Javascript" %}
 {% code title="app.js" %}
 ```javascript
-const AdminJSFastify = require('@adminjs/fastify')
-const AdminJS = require('adminjs')
-const Fastify = require('fastify')
+import AdminJSFastify from '@adminjs/fastify'
+import AdminJS from 'adminjs'
+import Fastify from 'fastify'
 
 const PORT = 3000
 
@@ -58,21 +58,9 @@ const start = async () => {
 start()
 ```
 {% endcode %}
-
-Now you can start your AdminJS application:
-
-```bash
-$ node app.js
-```
 {% endtab %}
 
 {% tab title="Typescript" %}
-Install `ts-node`:
-
-```bash
-$ yarn add -D ts-node
-```
-
 {% code title="app.ts" %}
 ```typescript
 import AdminJSFastify from '@adminjs/fastify'
@@ -105,14 +93,6 @@ const start = async () => {
 start()
 ```
 {% endcode %}
-
-
-
-Now you can start your AdminJS application:
-
-```bash
-$ ts-node app.ts
-```
 {% endtab %}
 {% endtabs %}
 
@@ -130,11 +110,11 @@ $ yarn add @fastify/session connect-pg-simple
 
 {% code title="app.js" %}
 ```javascript
-const AdminJSFastify = require('@adminjs/fastify')
-const FastifySession = require('@fastify/session')
-const AdminJS = require('adminjs')
-const Fastify = require('fastify')
-const Connect = require('connect-pg-simple')
+import AdminJSFastify from '@adminjs/fastify'
+import FastifySession from '@fastify/session'
+import AdminJS from 'adminjs'
+import Fastify from 'fastify'
+import Connect from 'connect-pg-simple'
 
 const ConnectSession = Connect(FastifySession)
 const sessionStore = new ConnectSession({
@@ -178,7 +158,7 @@ const start = async () => {
     },
     app,
     {
-      store: sessionStore,
+      store: sessionStore as any,
       saveUninitialized: true,
       secret: cookieSecret,
       cookie: {
@@ -207,12 +187,6 @@ As you may have noticed, the `authenticate` function compares credentials you su
 {% hint style="info" %}
 If you plan to copy-paste this example, make sure you set the database connection string to a functional one.
 {% endhint %}
-
-Now you should be able to start the server and see a login form when you visit the AdminJS panel URL.
-
-```bash
-$ node app.js
-```
 {% endtab %}
 
 {% tab title="Typescript" %}
@@ -220,7 +194,7 @@ Install additional dependencies:
 
 ```bash
 $ yarn add @fastify/session connect-pg-simple
-$ yarn add -D ts-node @types/connect-pg-simple
+$ yarn add -D @types/connect-pg-simple
 ```
 
 {% code title="app.ts" %}
@@ -304,11 +278,5 @@ As you may have noticed, the `authenticate` function compares credentials you su
 {% hint style="info" %}
 If you plan to copy-paste this example, make sure you set the database connection string to a functional one.
 {% endhint %}
-
-Now you should be able to start the server and see a login form when you visit the AdminJS panel URL.
-
-```bash
-$ ts-node app.ts
-```
 {% endtab %}
 {% endtabs %}

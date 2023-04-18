@@ -10,6 +10,16 @@ An AdminJS application consists of:
 * a plugin (for a framework of your choice)
 * an adapter for (for a ORM/ODM of your choice)
 
+### ESM & CJS Support
+
+As of version 7, AdminJS only supports ESM and will no longer work with CommonJS syntax. When setting up your project you should follow the guidelines from Node.js documentation: [https://nodejs.org/docs/latest-v18.x/api/esm.html](https://nodejs.org/docs/latest-v18.x/api/esm.html)
+
+In the most basic scenario, the steps to get started with ESM are:
+
+* setting `type` to `"module"` in your `package.json` file,
+* using `import`/`export` syntax with explicit `.js` extensions instead of `require`s,
+* if using Typescript, you should set `moduleResolution` and `module` to `"nodenext"` and `target` to `"esnext"` in your `tsconfig.json`
+
 ### Packages
 
 First of all, install the core package:

@@ -70,7 +70,7 @@ The configuration for non-Nest.js plugins is basically the same for each one of 
 // ... other imports
 import { MikroORM } from '@mikro-orm/core'
 import * as AdminJSMikroORM from '@adminjs/mikroorm'
-import { Owner } from './owner.entity'
+import { Owner } from './owner.entity.js'
 
 AdminJS.registerAdapter({
   Resource: AdminJSMikroORM.Resource,
@@ -151,7 +151,7 @@ This will allow you to pass MikroORM models for AdminJS to load. If we use the `
 {% code title="app.module.ts" %}
 ```typescript
 // ... other imports
-import { Owner } from './owner.entity'
+import { Owner } from './owner.entity.js'
 // ... other code
 AdminModule.createAdminAsync({
   useFactory: () => ({

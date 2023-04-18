@@ -28,15 +28,15 @@ Afterwards, follow one of the examples below.
 {% tab title="Javascript" %}
 {% code title="app.js" %}
 ```javascript
-const { default: AdminJSHapi } = require('@adminjs/hapi')
-const Hapi = require('@hapi/hapi')
+import AdminJSHapi from '@adminjs/hapi'
+import Hapi from '@hapi/hapi'
 
 const PORT = 3000
 
 const start = async () => {
   const server = Hapi.server({ port: PORT })
 
-  const adminOptions = {
+  const adminOptions: ExtendedAdminJSOptions = {
     resources: [],
     rootPath: '/admin',
     auth: {
@@ -57,21 +57,9 @@ const start = async () => {
 start()
 ```
 {% endcode %}
-
-Now you can start your AdminJS application:
-
-```bash
-$ node app.js
-```
 {% endtab %}
 
 {% tab title="Typescript" %}
-Install `ts-node`:
-
-```bash
-$ yarn add -D ts-node
-```
-
 {% code title="app.ts" %}
 ```typescript
 import AdminJSHapi, { ExtendedAdminJSOptions } from '@adminjs/hapi'
@@ -103,12 +91,6 @@ const start = async () => {
 start()
 ```
 {% endcode %}
-
-Now you can start your AdminJS application:
-
-```bash
-$ ts-node app.ts
-```
 {% endtab %}
 {% endtabs %}
 
@@ -120,15 +102,14 @@ To add authentication, all you have to do is extend `auth` config with `authenti
 {% tab title="Javascript" %}
 {% code title="app.js" %}
 ```javascript
-const { default: AdminJSHapi } = require('@adminjs/hapi')
-const Hapi = require('@hapi/hapi')
+import AdminJSHapi from '@adminjs/hapi'
+import Hapi from '@hapi/hapi'
 
 const PORT = 3000
 
 const DEFAULT_ADMIN = {
   email: 'admin@example.com',
   password: 'password',
-  test: 'abc',
 }
 
 const authenticate = async (email, password) => {
@@ -167,21 +148,9 @@ const start = async () => {
 start()
 ```
 {% endcode %}
-
-Now you can start your AdminJS application:
-
-```bash
-$ node app.js
-```
 {% endtab %}
 
-{% tab title="Second Tab" %}
-Install `ts-node`:
-
-```bash
-$ yarn add -D ts-node
-```
-
+{% tab title="Typescript" %}
 {% code title="app.ts" %}
 ```typescript
 import AdminJSHapi, { ExtendedAdminJSOptions } from '@adminjs/hapi'
@@ -230,11 +199,5 @@ const start = async () => {
 start()
 ```
 {% endcode %}
-
-Now you can start your AdminJS application:
-
-```bash
-$ ts-node app.ts
-```
 {% endtab %}
 {% endtabs %}
