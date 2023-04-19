@@ -35,10 +35,6 @@ $ nest new
 $ yarn add @adminjs/express express-session express-formidable
 ```
 
-{% hint style="warning" %}
-
-{% endhint %}
-
 Set `moduleResolution` to `nodenext` or `node16` in your `tsconfig.json`:
 
 ```json
@@ -58,8 +54,8 @@ Next, add Nest plugin code into `imports` of your `AppModule`:
 ```typescript
 import { Module } from '@nestjs/common'
 
-import { AppController } from './app.controller.js'
-import { AppService } from './app.service.js'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
 
 const DEFAULT_ADMIN = {
   email: 'admin@example.com',
@@ -115,14 +111,14 @@ AdminJS panel will be available under `http://localhost:3000/admin` if you have 
 If you don't want your admin panel to require authentication, simply follow the example above, but remove `auth` and `sessionOptions` configuration, for example:
 
 ```typescript
-    AdminModule.createAdminAsync({
-      useFactory: () => ({
-        adminJsOptions: {
-          rootPath: '/admin',
-          resources: [],
-        },
-      }),
-    }),
+import('@adminjs/nestjs').then(({ AdminModule }) => AdminModule.createAdminAsync({
+  useFactory: () => ({
+    adminJsOptions: {
+      rootPath: '/admin',
+      resources: [],
+    },
+  }),
+})),
 ```
 
 ### Using AdminJS ESM packages
