@@ -20,6 +20,10 @@ In the most basic scenario, the steps to get started with ESM are:
 * using `import`/`export` syntax with explicit `.js` extensions instead of `require`s,
 * if using Typescript, you should set `moduleResolution` and `module` to `"nodenext"` and `target` to `"esnext"` in your `tsconfig.json`
 
+{% hint style="warning" %}
+If you use `@adminjs/nestjs` do not update to ESM as NestJS doesn't support ESM as of 2023/04. Instead, please see the [updated guide for NestJS plugin](plugins/nest.md) so that you can import updated AdminJS packages into your CJS NestJS app.
+{% endhint %}
+
 ### Packages
 
 First of all, install the core package:

@@ -36,6 +36,10 @@ We do not provide any specific migration tutorial for migrating to ESM, we sugge
 
 For Typescript developers, this migration might be easier since the amount of changes you have to make is much less when compared to vanilla CommonJS apps.
 
+{% hint style="warning" %}
+If you use `@adminjs/nestjs` do not update to ESM as NestJS doesn't support ESM as of 2023/04. Instead, please see the [updated guide for NestJS plugin](plugins/nest.md) so that you can import updated AdminJS packages into your CJS NestJS app.
+{% endhint %}
+
 ## styled-components
 
 AdminJS's design system is built with `styled-components` library which is still incompatible with ESM in its latest official release (`5.3.9`). Version 6 is still in beta - we attempted to use it and while it did work with ESM, it also did bring some additional issues. We've also attempted to use `@emotion/styled` library instead but it is also currently incompatible with ESM.
