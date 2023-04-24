@@ -29,7 +29,7 @@ Afterwards, follow one of the examples below.
 {% code title="app.js" %}
 ```javascript
 import AdminJS from 'adminjs'
-import * as AdminJSExpress from '@adminjs/express'
+import AdminJSExpress from '@adminjs/express'
 import express from 'express'
 
 const PORT = 3000
