@@ -1,4 +1,4 @@
-# AdminJS Cloud CLI for creating and deploing application
+# AdminJS Cloud CLI for creating and deploing the application
 
 AdminJS Cloud Hosting comes with a CLI tool which you can use locally or inside your CI/CD to deploy your application.
 
@@ -7,7 +7,7 @@ AdminJS Cloud Hosting comes with a CLI tool which you can use locally or inside 
 {% code overflow="wrap" %}
 
 ```bash
-npm i -g @adminjs/cloud-cli
+$ npm i -g @adminjs/cloud-cli
 ```
 
 {% endcode %}
@@ -70,13 +70,13 @@ To use `@adminjs/cloud-cli` you must first request an application in [Pricing](h
 
 ### #create
 
-The `create` command allows you to create basic admin JS application with basic authentication. The CLI only generates only code for running it, you have to use commands `yarn && yarn build && yarn start` to check if setup is complete succesfully, if you fallow all the steps correctly.
+The `create` command allows you to create basic AdminJS application with basic authentication. The CLI generates only code for running it, you have to use commands `yarn && yarn build && yarn start` to check if setup is complete succesfully, if you follow all the steps correctly.
 
 #### Parameters
 
 ```
 name          string        required        The name of your application
-database      string        required        The connection string todatabase eg. `postgres://adminjs:adminjs@localhost:5432/adminjs`
+database      string        required        The connection string to database eg. `postgres://adminjs:adminjs@localhost:5432/adminjs`
 apiKey        string        required        Your API Key
 apiSecret     string        required        Your API Secret
 config        string        optional        Path to your configuration file (relative to PWD)
@@ -85,7 +85,7 @@ config        string        optional        Path to your configuration file (rel
 #### Usage
 
 ```bash
-adminjs-cloud create --name=<string> --database=<string> --apiKey=<string> --apiSecret=<string>
+$ adminjs-cloud create --name=<string> --database=<string> --apiKey=<string> --apiSecret=<string>
 ```
 ### #deploy
 
@@ -102,5 +102,5 @@ config        string        optional        Path to your configuration file (rel
 #### Usage
 
 ```bash
-adminjs-cloud deploy --apiKey=<string> --apiSecret=<string> --config=[string]
+$ adminjs-cloud deploy --apiKey=<string> --apiSecret=<string> --config=[string]
 ```

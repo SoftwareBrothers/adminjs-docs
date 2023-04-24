@@ -75,7 +75,7 @@
 * [Overview](deployment/overview.md)
 * [Create an Application](deployment/create-an-application.md)
 * [Generate API Key & Secret](deployment/generate-api-key-and-secret.md)
-* [Creating and Deploying the application using cli](deployment/creating&deploying-the-application-using-cli.md)
+* [Creating and Deploying the application using CLI](deployment/creating&deploying-the-application-using-cli.md)
 * [Editing environment variables](deployment/editing-environment-variables.md)
 
 ***
