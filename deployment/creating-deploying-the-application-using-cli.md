@@ -1,4 +1,4 @@
-# AdminJS Cloud CLI for creating and deploing the application
+# AdminJS Cloud CLI for creating and deploying the application
 
 AdminJS Cloud Hosting comes with a CLI tool which you can use locally or inside your CI/CD to deploy your application.
 
