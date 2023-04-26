@@ -7,7 +7,7 @@ AdminJS Cloud Hosting comes with a CLI tool which you can use locally or inside 
 {% code overflow="wrap" %}
 
 ```bash
-$ npm i -g @adminjs/cloud-cli
+$ yarn global add @adminjs/cloud-cli
 ```
 
 {% endcode %}
