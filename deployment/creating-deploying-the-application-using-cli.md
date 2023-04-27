@@ -2,6 +2,13 @@
 
 AdminJS Cloud Hosting comes with a CLI tool which you can use locally or inside your CI/CD to deploy your application.
 
+## Requierments 
+
+Before you will make installation and configuration steps make sure you met all the requirements below.
+
+- Node.js >=18 (we recommend latest LTS version)
+- yarn installed globally (`npm install --global yarn`) 
+  
 ## Installation
 
 {% code overflow="wrap" %}
