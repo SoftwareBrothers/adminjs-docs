@@ -55,6 +55,7 @@
 * [Overwriting CSS styles](ui-customization/overwriting-css-styles.md)
 * [Dashboard customization](ui-customization/dashboard-customization.md)
 * [Changing the form view](ui-customization/changing-the-form-view.md)
+* [Storybook](https://storybook.adminjs.co/)
 
 ## Tutorials
 
