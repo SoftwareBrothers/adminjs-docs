@@ -106,7 +106,7 @@ $ yarn add connect-pg-simple
 {% code title="app.js" %}
 ```javascript
 import AdminJS from 'adminjs'
-import * as AdminJSExpress from '@adminjs/express'
+import AdminJSExpress from '@adminjs/express'
 import express from 'express'
 import Connect from 'connect-pg-simple'
 import session from 'express-session'
