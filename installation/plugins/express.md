@@ -62,7 +62,7 @@ $ yarn add -D @types/express
 {% code title="app.ts" %}
 ```typescript
 import AdminJS from 'adminjs'
-import * as AdminJSExpress from '@adminjs/express'
+import AdminJSExpress from '@adminjs/express'
 import express from 'express'
 
 const PORT = 3000
