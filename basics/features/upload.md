@@ -102,6 +102,7 @@ export const files = {
 import uploadFeature from '@adminjs/upload';
 
 import { File } from './models/file.js';
+import componentLoader from './component-loader.js';
 
 const AWScredentials = {
   accessKeyId: 'AWS_ACCESS_KEY_ID',
@@ -131,6 +132,7 @@ export const files = {
   },
   features: [
     uploadFeature({
+      componentLoader,
       provider: { aws: AWScredentials },
       validation: { mimeTypes: ['application/pdf'] },
     }),
@@ -143,6 +145,7 @@ export const files = {
 <pre class="language-typescript"><code class="lang-typescript">import uploadFeature from '@adminjs/upload';
 
 import { File } from './models/file.js';
+import componentLoader from './component-loader.js';
 
 <strong>const GCScredentials = {
 </strong>  serviceAccount: 'SERVICE_ACCOUNT',
@@ -171,6 +174,7 @@ export const files = {
   },
   features: [
     uploadFeature({
+      componentLoader,
       provider: { gpc: GCScredentials },
       validation: { mimeTypes: ['image/png'] },
     }),

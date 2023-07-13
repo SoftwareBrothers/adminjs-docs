@@ -1,6 +1,8 @@
 # Table of contents
 
 * [AdminJS](README.md)
+* [Contribute](https://github.com/orgs/SoftwareBrothers/projects/5)
+* [Stats Dashboard](https://stats.adminjs.co)
 
 ## Installation
 
