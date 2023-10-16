@@ -369,6 +369,53 @@ locale: {
 }
 ```
 
+## @adminjs/bundler
+
+`@adminjs/bundler` is a library which allows you to prebundle all AdminJS browser assets:
+
+* `app.bundle.js`&#x20;
+* `design-system.bundle.js`
+* `global.bundle.js`
+* `components.bundle.js`
+
+It is especially useful when you are deploying AdminJS to a server which doesn't grant you write access which AdminJS needs by default to create `components.bundle.js` which contains your custom components. `@adminjs/bundler` is a package which exports an in-code `bundle` script which you can use to solve the mentioned issue by:
+
+1. Pregenerating all bundle files.
+2. Serving them as static files on your server OR uploading them to a public storage such as AWS S3.
+
+With the release of version 7, this package is now ESM-only and `ComponentLoader` support has been added. The script's usage has been simplified because we'd removed `customComponentsInitializationFilePath` and `adminJsOptions`. You now simply have to provide your `componentLoader` instance. Example:
+
+```typescript
+import { bundle } from '@adminjs/bundler';
+
+import componentLoader from './component-loader.js';
+
+(async () => {
+  const files = await bundle({
+    componentLoader,
+    destinationDir: 'public', // relative to CWD
+  });
+})();
+```
+
+Now either serve the contents of `destinationDir` publicly on your server, example for Express:
+
+```typescript
+app.use(express.static(path.join(process.cwd(), 'public')));
+```
+
+or upload `destinationDir` contents to a storage of your choice (it has to be publicly accessible).
+
+Now, remember to set `assetsCDN` option in your `AdminJS` configuration:
+
+```typescript
+// ...
+const admin = new AdminJS({
+  // ...,
+  assetsCDN: '<PUBLIC_ASSETS_URL>'
+})
+```
+
 ## Demo Application
 
 Our demo application at [https://demo.adminjs.co/admin/login](https://demo.adminjs.co/admin/login) contains all the changes described above. If you're still struggling with the migration, you can take a look at a pull request which introduces these changes to our demo app: [https://github.com/SoftwareBrothers/adminjs-example-app/pull/68](https://github.com/SoftwareBrothers/adminjs-example-app/pull/68/)
