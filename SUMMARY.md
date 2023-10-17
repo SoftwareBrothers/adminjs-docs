@@ -35,6 +35,7 @@
 * [Action](basics/action.md)
 * [Property](basics/property.md)
 * [Features](basics/features/README.md)
+  * [Relations](basics/features/relations.md)
   * [Upload](basics/features/upload.md)
   * [Logger](basics/features/logger.md)
   * [Import & Export](basics/features/import-and-export.md)

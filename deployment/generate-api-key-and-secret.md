@@ -10,7 +10,7 @@ Select "Generate API Key" and you should soon see a new screen which allows you 
 
 <figure><img src="../.gitbook/assets/Screenshot 2022-11-23 at 10.18.04.png" alt=""><figcaption><p>API Key &#x26; Secret</p></figcaption></figure>
 
-Once you download the file, you can proceed to [deploy your application](deploying-the-application-using-cli.md) using API Key/Secret pair.
+Once you download the file, you can proceed to [deploy your application](broken-reference) using API Key/Secret pair.
 
 {% hint style="warning" %}
 Choosing to "Generate API Key" again invalidates existing API Key/Secret pair.
