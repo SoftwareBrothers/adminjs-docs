@@ -105,8 +105,10 @@ import { File } from './models/file.js';
 import componentLoader from './component-loader.js';
 
 const AWScredentials = {
-  accessKeyId: 'AWS_ACCESS_KEY_ID',
-  secretAccessKey: 'AWS_SECRET_ACCESS_KEY',
+  credentials:{
+    accessKeyId: 'AWS_ACCESS_KEY_ID',
+    secretAccessKey: 'AWS_SECRET_ACCESS_KEY',
+  },
   region: 'AWS_REGION',
   bucket: 'AWS_BUCKET',
 };
