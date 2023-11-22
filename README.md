@@ -15,7 +15,7 @@ AdminJS also generates it's own REST API which you can use outside of the admin 
 ![AdminJS Demo](.gitbook/assets/anim.gif)
 
 {% hint style="info" %}
-Visit [our demo](https://adminjs-demo.herokuapp.com/admin/login) for a live preview.\
+Visit our [demo](https://demo.adminjs.co) for a live preview.\
 \
 &#x20;`Email: admin@example.com`\
 &#x20;`Password: password`

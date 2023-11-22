@@ -11,6 +11,11 @@ AdminJS is now ESM-only. If you plan to use NestJS in your project, NestJS doesn
 {% endhint %}
 
 {% hint style="info" %}
+Example repository with AdminJS v7 working with NestJS & ESM:\
+[https://github.com/dziraf/adminjs-v7-with-nestjs](https://github.com/dziraf/adminjs-v7-with-nestjs)
+{% endhint %}
+
+{% hint style="info" %}
 Make sure you have installed AdminJS packages described in [Getting started](../getting-started.md) article.
 
 ```bash

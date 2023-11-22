@@ -26,25 +26,3 @@ If you'd like to learn how to write your own `features`, please visit:
 {% content-ref url="writing-your-own-features.md" %}
 [writing-your-own-features.md](writing-your-own-features.md)
 {% endcontent-ref %}
-
-## Official features
-
-{% content-ref url="upload.md" %}
-[upload.md](upload.md)
-{% endcontent-ref %}
-
-{% content-ref url="logger.md" %}
-[logger.md](logger.md)
-{% endcontent-ref %}
-
-{% content-ref url="import-and-export.md" %}
-[import-and-export.md](import-and-export.md)
-{% endcontent-ref %}
-
-{% content-ref url="password.md" %}
-[password.md](password.md)
-{% endcontent-ref %}
-
-{% content-ref url="leaflet-maps.md" %}
-[leaflet-maps.md](leaflet-maps.md)
-{% endcontent-ref %}

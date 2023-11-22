@@ -50,28 +50,24 @@ The configuration for non-Nest.js plugins is basically the same for each one of 
 {% code title="app.ts" %}
 ```typescript
 // ... other imports
-import * as AdminJSPrisma from '@adminjs/prisma'
+import { Database, Resource, getModelByName } from '@adminjs/prisma'
 import { PrismaClient } from '@prisma/client'
-import { DMMFClass } from '@prisma/client/runtime'
-
-import { Category } from './category.entity.js'
 
 const prisma = new PrismaClient()
 
-AdminJS.registerAdapter({
-  Resource: AdminJSPrisma.Resource,
-  Database: AdminJSPrisma.Database,
-})
+AdminJS.registerAdapter({ Database, Resource })
 
 // ... other code
 const start = async () => {
-  // `_baseDmmf` contains necessary Model metadata but it is a private method
-  // so it isn't included in PrismaClient type
-  const dmmf = ((prisma as any)._baseDmmf as DMMFClass)
   const adminOptions = {
-    // We pass Publisher to `resources`
     resources: [{
-      resource: { model: dmmf.modelMap.Publisher, client: prisma },
+      resource: { model: getModelByName('Post'), client: prisma },
+      options: {},
+    }, {
+      resource: { model: getModelByName('Profile'), client: prisma },
+      options: {},
+    }, {
+      resource: { model: getModelByName('Publisher'), client: prisma },
       options: {},
     }],
   }
@@ -98,7 +94,7 @@ In your `app.module.ts` add these imports at the top of the file:
 
 {% code title="app.module.ts" %}
 ```typescript
-import * as AdminJSPrisma from '@adminjs/prisma'
+import { Database, Resource, getModelByName } from '@adminjs/prisma'
 import AdminJS from 'adminjs'
 
 import { PrismaService } from './prisma.service.js' // PrismaService from Nest.js documentation
@@ -109,10 +105,7 @@ Following this, register `AdminJSPrisma` adapter somewhere after your imports:
 
 {% code title="app.module.ts" %}
 ```typescript
-AdminJS.registerAdapter({
-  Resource: AdminJSPrisma.Resource,
-  Database: AdminJSPrisma.Database,
-})
+AdminJS.registerAdapter({ Database, Resource })
 ```
 {% endcode %}
 
@@ -128,14 +121,12 @@ AdminModule.createAdminAsync({
     // Note: Feel free to contribute to this documentation if you find a Nest-way of
     // injecting PrismaService into AdminJS module
     const prisma = new PrismaService()
-    // `_baseDmmf` contains necessary Model metadata but it is a private method
-    // so it isn't included in PrismaClient type
-    const dmmf = ((prisma as any)._baseDmmf as DMMFClass)
+
     return {
       adminJsOptions: {
         rootPath: '/admin',
         resources: [{
-          resource: { model: dmmf.modelMap.Publisher, client: prisma },
+          resource: { model: getModelByName('Post'), client: prisma },
           options: {},
         }],
       },
@@ -146,3 +137,31 @@ AdminModule.createAdminAsync({
 ```
 {% endcode %}
 
+### Custom client module
+
+In case your generated client is not under the default path, you can pass `clientModule` to each resource's configuration:
+
+```typescript
+// other imports
+// your custom prisma module
+import PrismaModule from '../prisma/client-prisma/index.js';
+
+// ...
+
+const prisma = new PrismaModule.PrismaClient();
+
+// ...
+
+// Notice `clientModule` per resource
+const admin = new AdminJS({
+  resources: [{
+    resource: {
+      model: getModelByName('Post', PrismaModule),
+      client: prisma,
+      clientModule: PrismaModule,
+    },
+  }],
+});
+```
+
+\

@@ -2,7 +2,8 @@
 
 * [AdminJS](README.md)
 * [Contribute](https://github.com/orgs/SoftwareBrothers/projects/5)
-* [Stats Dashboard](https://stats.adminjs.co)
+* [Demo](https://demo.adminjs.co)
+* [Addons Marketplace](https://cloud.adminjs.co)
 
 ## Installation
 
@@ -51,6 +52,12 @@
   * [Delete](basics/api/delete.md)
   * [Bulk Delete](basics/api/bulk-delete.md)
 * [Themes](basics/themes.md)
+* [Authentication](basics/authentication/README.md)
+  * [FirebaseAuthProvider](basics/authentication/firebaseauthprovider.md)
+
+***
+
+* [How to write an addon?](how-to-write-an-addon.md)
 
 ## UI Customization
 
