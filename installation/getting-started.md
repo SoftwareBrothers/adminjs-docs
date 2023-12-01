@@ -24,6 +24,32 @@ In the most basic scenario, the steps to get started with ESM are:
 If you use `@adminjs/nestjs` do not update to ESM as NestJS doesn't support ESM as of 2023/04. Instead, please see the [updated guide for NestJS plugin](plugins/nest.md) so that you can import updated AdminJS packages into your CJS NestJS app.
 {% endhint %}
 
+### Quickstart
+
+`@adminjs/cli` provides `adminjs create` command which you can use to quickly create your AdminJS application.
+
+#### Installation
+
+**NPM:**
+
+```bash
+$ npm i -g @adminjs/cli
+```
+
+**Yarn:**
+
+```bash
+$ yarn global add @adminjs/cli
+```
+
+#### Usage
+
+```bash
+$ adminjs create
+```
+
+You may also set up your AdminJS application manually by following the rest of this documentation.
+
 ### Packages
 
 First of all, install the core package:
