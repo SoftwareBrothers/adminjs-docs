@@ -46,6 +46,7 @@ const admin = new AdminJS({
   dashboard: {
     component: Components.Dashboard,
   },
+  componentLoader
 })
 ```
 
@@ -71,6 +72,7 @@ const admin = new AdminJS({
     component: Components.Dashboard,
     handler: dashboardHandler,
   },
+  componentLoader
 })
 ```
 
