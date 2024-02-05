@@ -69,6 +69,10 @@ The two features will be explained in more detail in the later parts of this gui
 
 The usage guide will be based on sample database tables which can be represented by the following interfaces:
 
+
+
+{% tabs %}
+{% tab title="Generic" %}
 ```typescript
 interface IOrganization {
   id: number;
@@ -109,6 +113,63 @@ interface IOffice {
   Team belongs to multiple Persons through TeamMember
 */
 ```
+{% endtab %}
+
+{% tab title="Prisma Schema" %}
+```prisma
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Organization {
+    id      Int      @id @default(autoincrement())
+    name    String
+    persons Person[]
+
+    @@map("organizations")
+}
+
+model Person {
+    id                  Int          @id @default(autoincrement())
+    firstName           String       @map("first_name")
+    lastName            String       @map("last_name")
+    email               String
+    phone               String
+    dateOfBirth         DateTime?     @map("date_of_birth")
+    isActive            Boolean
+    organization        Organization @relation(fields: [organizationId], references: [id])
+    organizationId      Int          @map("organization_id")
+
+    teams               TeamMember[]
+
+    @@map("persons")
+}
+
+model Team {
+    id                  Int         @id @default(autoincrement())
+    name                String
+    members             TeamMember[]
+
+    @@map("teams")
+}
+
+model TeamMember {
+    id                  Int         @id @default(autoincrement())
+    personId            Int         @map("person_id")
+    person              Person      @relation(fields: [personId], references: [id])
+    teamId              Int         @map("team_id")
+    team                Team        @relation(fields: [teamId], references: [id])
+
+    @@map("team_members")
+}
+```
+{% endtab %}
+{% endtabs %}
 
 `@adminjs/relations` is adapter-agnostic which means you can use it regardless of the database adapter you had installed. Nevertheless, some ORMs automatically generate and manage  junction tables for you without you having to actually create entities for them in your codebase. This will not work with AdminJS and you will have to create actual entities for junction tables and register them as AdminJS resources since AdminJS uses them to find your `M:N` records.
 
@@ -175,6 +236,10 @@ type RelationsFeatureConfig = {
 ```
 
 ### One-To-Many
+
+{% hint style="warning" %}
+If using Prisma, configure the `joinKey` and `inverseJoinKey` options by providing the relation names instead of foreign keys, for example: `organization` instead of `organizationId`
+{% endhint %}
 
 According to the database structure described above as well as the presented configuration options of `owningRelationSettingsFeature`, this is how you can add this feature to `Organization` resource which can have many `Persons` and `Offices`
 
