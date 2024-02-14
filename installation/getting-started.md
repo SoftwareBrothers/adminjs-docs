@@ -26,6 +26,10 @@ If you use `@adminjs/nestjs` do not update to ESM as NestJS doesn't support ESM 
 
 ### Quickstart
 
+{% hint style="info" %}
+AdonisJS (and Lucid) integration should be installed using Adonis CLI. Please refer to [Adonis plugin documentation ](plugins/adonis.md)to see a thorough guide.
+{% endhint %}
+
 `@adminjs/cli` provides `adminjs create` command which you can use to quickly create your AdminJS application.
 
 #### Installation

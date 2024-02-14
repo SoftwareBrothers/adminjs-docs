@@ -9,6 +9,7 @@
 
 * [Getting started](installation/getting-started.md)
 * [Plugins](installation/plugins/README.md)
+  * [Adonis](installation/plugins/adonis.md)
   * [Express](installation/plugins/express.md)
   * [Nest](installation/plugins/nest.md)
   * [Fastify](installation/plugins/fastify.md)
