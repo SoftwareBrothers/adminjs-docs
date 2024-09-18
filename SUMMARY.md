@@ -82,7 +82,7 @@
 * [Charts](faq/charts.md)
 * [Forgot Password](faq/resource.md)
 
-## ☁ Deployment
+## ☁️ Deployment
 
 * [Overview](deployment/overview.md)
 * [Create an Application](deployment/create-an-application.md)
@@ -92,4 +92,4 @@
 
 ***
 
-* [⚠ Legacy documentation](api-reference.md)
+* [⚠️ Legacy documentation](api-reference.md)
