@@ -213,9 +213,9 @@ type RelationsFeatureConfig = {
       type: RelationType;
       /* A junction resource/table configuration. It is only required for `many-to-many` */
       junction?: {
-        /* A "joinKey" inside junction table. If configuring for "Team", it can be "teamId". */
+        /* A "joinKey" inside junction table. If configuring for "Team", it can be "team" (i.e, a property with `@relation` clause). */
         joinKey: string;
-        /* An "inverseJoinKey" inside junction table. If "Team" has a M:N relation with "Person", it can be "personId" */
+        /* An "inverseJoinKey" inside junction table. If "Team" has a M:N relation with "Person", it can be "person" */
         inverseJoinKey: string;
         /* A resource ID of the junction table, for example: "TeamMember" */
         throughResourceId: string;
@@ -259,14 +259,14 @@ export const createOrganizationResource = () => ({
         persons: {
           type: RelationType.OneToMany,
           target: {
-            joinKey: 'organizationId',
+            joinKey: 'organization',
             resourceId: 'Person',
           },
         },
         offices: {
           type: RelationType.OneToMany,
           target: {
-            joinKey: 'organizationId',
+            joinKey: 'organization',
             resourceId: 'Office',
           },
         },
@@ -328,8 +328,8 @@ export const createTeamResource = () => ({
         members: {
           type: RelationType.ManyToMany,
           junction: {
-            joinKey: 'teamId',
-            inverseJoinKey: 'personId',
+            joinKey: 'team',
+            inverseJoinKey: 'person',
             throughResourceId: 'TeamMember',
           },
           target: {
@@ -394,8 +394,8 @@ export const createTeamResource = () => ({
         members: {
           type: RelationType.ManyToMany,
           junction: {
-            joinKey: 'teamId',
-            inverseJoinKey: 'personId',
+            joinKey: 'team',
+            inverseJoinKey: 'person',
             throughResourceId: 'TeamMember',
           },
           target: {
