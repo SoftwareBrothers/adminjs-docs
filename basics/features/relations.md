@@ -213,9 +213,9 @@ type RelationsFeatureConfig = {
       type: RelationType;
       /* A junction resource/table configuration. It is only required for `many-to-many` */
       junction?: {
-        /* A "joinKey" inside junction table. If configuring for "Team", it can be "team" (i.e, a property with `@relation` clause). */
+        /* A "joinKey" inside junction table. If configuring for "Team", it can be "teamId". */
         joinKey: string;
-        /* An "inverseJoinKey" inside junction table. If "Team" has a M:N relation with "Person", it can be "person" */
+        /* An "inverseJoinKey" inside junction table. If "Team" has a M:N relation with "Person", it can be "personId" */
         inverseJoinKey: string;
         /* A resource ID of the junction table, for example: "TeamMember" */
         throughResourceId: string;
@@ -237,10 +237,6 @@ type RelationsFeatureConfig = {
 
 ### One-To-Many
 
-{% hint style="warning" %}
-If using Prisma, configure the `joinKey` and `inverseJoinKey` options by providing the relation names instead of foreign keys, for example: `organization` instead of `organizationId`
-{% endhint %}
-
 According to the database structure described above as well as the presented configuration options of `owningRelationSettingsFeature`, this is how you can add this feature to `Organization` resource which can have many `Persons` and `Offices`
 
 {% code title="organization.resource.ts" %}
@@ -259,14 +255,54 @@ export const createOrganizationResource = () => ({
         persons: {
           type: RelationType.OneToMany,
           target: {
-            joinKey: 'organization',
+            joinKey: 'organizationId',
             resourceId: 'Person',
           },
         },
         offices: {
           type: RelationType.OneToMany,
           target: {
-            joinKey: 'organization',
+            joinKey: 'organizationId',
+            resourceId: 'Office',
+          },
+        },
+      },
+    }),
+  ],
+});
+```
+{% endcode %}
+
+{% hint style="warning" %}
+If using Prisma, configure the `joinKey` and `inverseJoinKey` options by providing the relation names instead of foreign keys, for example: `organization` instead of `organizationId`
+{% endhint %}
+
+{% code title="organization.resource.ts" %}
+```diff
+import { owningRelationSettingsFeature, type RelationType } from '@adminjs/relations'
+import { componentLoader } from './component-loader.js';
+import { Organization } from './models/index.js';
+
+export const createOrganizationResource = () => ({
+  resource: Organization,
+  features: [
+    owningRelationSettingsFeature({
+      componentLoader,
+      licenseKey: process.env.LICENSE_KEY,
+      relations: {
+        persons: {
+          type: RelationType.OneToMany,
+          target: {
+-           joinKey: 'organizationId',
++           joinKey: 'organization',
+            resourceId: 'Person',
+          },
+        },
+        offices: {
+          type: RelationType.OneToMany,
+          target: {
+-           joinKey: 'organizationId',
++           joinKey: 'organization',
             resourceId: 'Office',
           },
         },
@@ -328,8 +364,8 @@ export const createTeamResource = () => ({
         members: {
           type: RelationType.ManyToMany,
           junction: {
-            joinKey: 'team',
-            inverseJoinKey: 'person',
+            joinKey: 'teamId',
+            inverseJoinKey: 'personId',
             throughResourceId: 'TeamMember',
           },
           target: {
@@ -394,8 +430,8 @@ export const createTeamResource = () => ({
         members: {
           type: RelationType.ManyToMany,
           junction: {
-            joinKey: 'team',
-            inverseJoinKey: 'person',
+            joinKey: 'teamId',
+            inverseJoinKey: 'personId',
             throughResourceId: 'TeamMember',
           },
           target: {
