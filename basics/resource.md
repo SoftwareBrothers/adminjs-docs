@@ -20,7 +20,7 @@ AdminJS allows you to define resources through adapters. Adapters are AdminJS ex
 * [BaseDatabase](https://adminjs.page.link/base-database-code) - it's responsible for loading all resources (models) defined in your database (if you choose to do so)
 * [BaseProperty](https://adminjs.page.link/base-property-code) - it's responsible to describe your resource's (model's) attributes based on your model's metadata
 
-The list of adapters that are officially supported by AdminJS can be found in[ Adapters](../installation/adapters/) section.
+The list of adapters that are officially supported by AdminJS can be found in [Adapters](../installation/adapters/) section.
 
 In order to use an adapter in your documentation you must first register it.
 
