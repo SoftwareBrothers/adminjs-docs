@@ -181,7 +181,7 @@ Custom components can also be translated as described (add link) Custom componen
 
 ### Overriding language detection
 
-Sometimes it might be useful to override language detection. You can do this by setting lang`u`age value to '`cimode`'.
+Sometimes it might be useful to override language detection. You can do this by setting language value to '`cimode`'.
 
 You can also set `locale` value based on `currentAdmin` object (which holds logged user details)
 
