@@ -18,6 +18,7 @@
   * [Community Plugins](installation/plugins/community-plugins/README.md)
     * [FeathersJS](https://github.com/AshotN/feathers-chat-AdminJS)
     * [AdonisJS](https://github.com/chirgjin/adminjs-adonis)
+  * [Matrix](installation/plugins/matrix.md)
 * [Adapters](installation/adapters/README.md)
   * [TypeORM](installation/adapters/typeorm.md)
   * [Sequelize](installation/adapters/sequelize.md)
@@ -55,6 +56,7 @@
 * [Themes](basics/themes.md)
 * [Authentication](basics/authentication/README.md)
   * [FirebaseAuthProvider](basics/authentication/firebaseauthprovider.md)
+  * [MatrixAuthProvider](basics/authentication/matrixauthprovider.md)
 
 ***
 
