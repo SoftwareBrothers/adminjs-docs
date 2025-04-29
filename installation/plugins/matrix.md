@@ -11,6 +11,10 @@ description: >-
 
 ***
 
+<div><figure><img src="../../.gitbook/assets/Zrzut ekranu z 2025-04-29 12-53-20.png" alt=""><figcaption></figcaption></figure> <figure><img src="../../.gitbook/assets/Zrzut ekranu z 2025-04-29 12-53-27.png" alt=""><figcaption></figcaption></figure></div>
+
+<figure><img src="../../.gitbook/assets/Zrzut ekranu z 2025-04-29 12-53-54 (1).png" alt=""><figcaption></figcaption></figure>
+
 ### Features
 
 * Seamless integration between AdminJS and Matrix.
