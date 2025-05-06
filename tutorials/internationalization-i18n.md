@@ -177,7 +177,7 @@ i18next.init({...}, (err, t) => {
 
 ### How to use translations in my custom actions/components
 
-Custom components can also be translated as described (add link) Custom component internationalization
+Custom components can also be translated as described in [Custom component internationalization](custom-component-internationalization.md)
 
 ### Overriding language detection
 
