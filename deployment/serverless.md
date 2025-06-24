@@ -10,12 +10,6 @@ This guide will walk you through:
 
 ---
 
-{% hint style="info" %}
-Example repository with AdminJS v6 & Vercel Serverless:\
-[https://github.com/puleugo/nestjs-adminjs-serverless](https://github.com/puleugo/nestjs-adminjs-serverless)
-{% endhint %}
-
-
 ## Bundling AdminJS Components
 
 When deploying AdminJS, any custom React components you add need to be bundled into static files that the client can access.
