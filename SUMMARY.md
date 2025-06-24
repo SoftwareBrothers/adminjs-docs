@@ -91,6 +91,7 @@
 * [Generate API Key & Secret](deployment/generate-api-key-and-secret.md)
 * [Creating and Deploying the application using CLI](deployment/creating-deploying-the-application-using-cli.md)
 * [Editing environment variables](deployment/editing-environment-variables.md)
+* [Serverless](deployment/serverless.md)
 
 ***
 
