@@ -6,7 +6,7 @@ description: >-
 
 # Matrix
 
-Users must have administrative privileges in Matrix to successfully authenticate and gain access to the AdminJS dashboard, ensuring only authorized personnel can manage administrative functions.
+To ensure that only authorized personnel can manage administrative functions, users must have administrative privileges in Matrix to authenticate and access AdminJS Matrix features.
 
 [➡️  Authentication - Matrix User Authentication](../../basics/authentication/matrixauthprovider.md)
 
