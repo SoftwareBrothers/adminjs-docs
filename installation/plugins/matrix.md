@@ -1,11 +1,12 @@
 ---
 description: >-
   This plugin integrates AdminJS with Matrix, enabling users to log in to the
-  AdminJS panel using Matrix accounts through the MatrixAuthProvider. Users must
-  have administrative privileges in Matrix to u
+  AdminJS panel using Matrix accounts through the MatrixAuthProvider.
 ---
 
 # Matrix
+
+Users must have administrative privileges in Matrix to successfully authenticate and gain access to the AdminJS dashboard, ensuring only authorized personnel can manage administrative functions.
 
 [➡️  Authentication - Matrix User Authentication](../../basics/authentication/matrixauthprovider.md)
 
